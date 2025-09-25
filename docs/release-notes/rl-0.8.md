@@ -500,6 +500,13 @@
 - Add [nvim-highlight-colors] plugin in `vim.ui.nvim-highlight-colors` with
   `enable` and `setupOpts`
 
+- Allow `vim.lsp.servers.${name}.cmd` to also be a function, i.e luaInline,
+  in addition to the current type of `nullOr (listOf str)`, or a list of strings.
+  This function's signature should be as per the docs: [`vim.lsp.Config`](https://neovim.io/doc/user/lsp.html#lsp-core).
+  It must also start the lsp server manually via `vim.lsp.rpc.start(cmd, dispatchers)`.
+  Most use cases will not require this behaviour but it is supported and should
+  be possible to use via nvf, and this is now possible as of this change!
+
 [PartyWumpus](https://github.com/PartyWumpus):
 
 [typst-concealer]: https://github.com/PartyWumpus/typst-concealer
