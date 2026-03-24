@@ -444,5 +444,7 @@ https://github.com/gorbit99/codewindow.nvim
 - Add `vim.treesitter.indent.excludes` to exclude filetypes from the treesitter
   indentation; e.g. useful for Haskell and PureScript, for which treesitter
   indentation does not work good
+- Allow `vim.treesitter.context.setupOpts.max_lines` to also be given as a
+  string in order to allow percentage values like `"20%"`
 
 <!-- vim: set textwidth=80: -->
