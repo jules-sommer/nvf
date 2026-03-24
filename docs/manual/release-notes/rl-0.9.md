@@ -390,4 +390,12 @@ https://github.com/gorbit99/codewindow.nvim
 
 - Add razor support for `roslyn_ls` and `csharp_ls`
 
+[mputz86](https://github.com/mputz86)
+
+- Add `vim.treesitter.indent.pattern` to specify file pattern(s) for which
+  treesitter indentation should be used
+- Add `vim.treesitter.indent.excludes` to exclude filetypes from the treesitter
+  indentation; e.g. useful for Haskell and PureScript, for which treesitter
+  indentation does not work good
+
 <!-- vim: set textwidth=80: -->

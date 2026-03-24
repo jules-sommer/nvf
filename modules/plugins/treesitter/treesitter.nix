@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib.options) mkOption mkEnableOption literalExpression;
-  inherit (lib.types) listOf nullOr package bool;
+  inherit (lib.types) listOf nullOr package bool str oneOf;
 in {
   options.vim.treesitter = {
     enable = mkEnableOption "treesitter, also enabled automatically through language options";
@@ -64,7 +64,28 @@ in {
       '';
     };
 
-    indent = {enable = mkEnableOption "indentation with treesitter" // {default = true;};};
+    indent = {
+      enable = mkEnableOption "indentation with treesitter" // {default = true;};
+      pattern = mkOption {
+        type = oneOf [str (listOf str)];
+        default = "*";
+        example = literalExpression ''["lua" "nix"]'';
+        description = ''
+          Specify the filetype pattern(s) for which the treesitter indentation should be used.
+
+          See {command}`:h autocmd-pattern`.
+        '';
+      };
+      excludes = mkOption {
+        type = listOf str;
+        default = [];
+        example = literalExpression ''["haskell", "purescript"]'';
+        description = ''
+          Exclude the listed filetypes from using treesitter indentation.
+        '';
+      };
+    };
+
     highlight = {enable = mkEnableOption "highlighting with treesitter" // {default = true;};};
   };
 }
