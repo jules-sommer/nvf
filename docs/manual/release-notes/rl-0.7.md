@@ -375,7 +375,7 @@ The changes are, in no particular order:
 [nezia1](https://github.com/nezia1):
 
 - Add [biome](https://github.com/biomejs/biome) support for Typescript, CSS and
-  Svelte. Enable them via {option}`vim.languages.ts.format.type`,
+  Svelte. Enable them via {option}`vim.languages.typescript.format.type`,
   {option}`vim.languages.css.format.type` and
   {option}`vim.languages.svelte.format.type` respectively.
 - Replace [nixpkgs-fmt](https://github.com/nix-community/nixpkgs-fmt) with

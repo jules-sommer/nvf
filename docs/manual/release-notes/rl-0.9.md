@@ -102,6 +102,8 @@
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
+- Renamed `languages.ts` to `languages.typescript`.
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):
