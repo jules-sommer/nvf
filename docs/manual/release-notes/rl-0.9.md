@@ -220,6 +220,8 @@
 - Lazy-load `nvim-autopairs` plugin when using
   `vim.autopairs.nvim-autopairs.enable`
 
+- Added support for neovim 0.12's `ui2` feature via `vim.ui.ui2`
+
 [Machshev](https://github.com/machshev):
 
 - Added `ruff` and `ty` LSP support for Python under `programs.python`.
