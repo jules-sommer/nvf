@@ -33,6 +33,12 @@
   controlled via `vim.options.foldenable` directly instead. RIP
   `vim.treesitter.foldByDefault` 2026-03-19 - 2026-03-19.
 
+- `vim.assistant.codecompanion-nvim.setupOpts.strategies` has been renamed to
+  `vim.assistant.codecompanion-nvim.setupOpts.interactions` to match the
+  upstream codecompanion.nvim v19 rename. If you set options like
+  `setupOpts.strategies.chat.adapter`, rename them to
+  `setupOpts.interactions.chat.adapter`.
+
 [Snoweuph](https://github.com/snoweuph)
 
 - "Correct `languages.go.treesitter` to contain all Go file types.
@@ -58,6 +64,13 @@
 - Added `json5` into `languages.json`. Some options where renamed.
 
 ## Changelog {#sec-release-0-9-changelog}
+
+[SecBear](https://github.com/SecBear):
+
+- Renamed `setupOpts.strategies` to `setupOpts.interactions` in the
+  codecompanion-nvim module to match the upstream v19 rename. The old key
+  triggered a migration shim that silently discarded user `interactions`
+  overrides.
 
 [midischwarz12](https://github.com/midischwarz12):
 
