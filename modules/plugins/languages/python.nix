@@ -22,7 +22,7 @@
   servers = {
     pyrefly = {
       enable = true;
-      cmd = [(getExe pkgs.pyrefly) "server"];
+      cmd = [(getExe pkgs.pyrefly) "lsp"];
       filetypes = ["python"];
       root_markers = [
         "pyproject.toml"
