@@ -380,4 +380,8 @@ https://github.com/gorbit99/codewindow.nvim
 
 - Added configuration option for `foldenable`
 
+[CaueAnjos](https://github.com/caueanjos)
+
+- Add razor support for `roslyn_ls` and `csharp_ls`
+
 <!-- vim: set textwidth=80: -->
