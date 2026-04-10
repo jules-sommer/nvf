@@ -280,7 +280,7 @@ in {
           lua
           */
           ''
-            -- Set unkown file types!
+            -- Set unknown file types!
             vim.filetype.add {
               extension = {
                 razor = "razor",
