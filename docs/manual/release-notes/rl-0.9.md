@@ -229,6 +229,9 @@
 
 [Snoweuph](https://github.com/snoweuph)
 
+- Fix `tressiter` to allow `null` in grammar options, so they can be filtered
+  out.
+
 - Added [Selenen](https://github.com/kampfkarren/selene) for more diagnostics in
   `languages.lua`.
 
