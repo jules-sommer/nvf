@@ -229,6 +229,9 @@
 
 [Snoweuph](https://github.com/snoweuph)
 
+- Added `vim.lsp.presets.<name>` to contain LSP configurations. This allows for
+  more flexibility in nvf and reuse of LSPs across languages.
+
 - Fix `tressiter` to allow `null` in grammar options, so they can be filtered
   out.
 

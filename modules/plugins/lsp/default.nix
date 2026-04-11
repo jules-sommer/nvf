@@ -4,6 +4,8 @@
     ./config.nix
     ./module.nix
 
+    ./presets
+
     ./lspconfig
     ./lspsaga
     ./null-ls
