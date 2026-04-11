@@ -3,6 +3,7 @@
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
+    ./python-lsp-server.nix
     ./qmlls.nix
     ./r-languageserver.nix
     ./ruby-lsp.nix
