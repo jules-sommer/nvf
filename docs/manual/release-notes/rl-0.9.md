@@ -229,6 +229,9 @@
 
 [Snoweuph](https://github.com/snoweuph)
 
+- Fix `tressiter` to allow `null` in grammar options, so they can be filtered
+  out.
+
 - Added [Selenen](https://github.com/kampfkarren/selene) for more diagnostics in
   `languages.lua`.
 
@@ -303,6 +306,8 @@
   previewing yet.
 
 - Added `languages.jq`. Supports highlighting, formatting and lsp.
+
+- Extend `languages.asm` to support more filetypes out of the box.
 
 - Didn't Add
   [`syntax-gaslighting`](https://github.com/NotAShelf/syntax-gaslighting.nvim),

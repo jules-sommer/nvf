@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib.options) mkOption mkEnableOption literalExpression;
-  inherit (lib.types) listOf package bool;
+  inherit (lib.types) listOf nullOr package bool;
 in {
   options.vim.treesitter = {
     enable = mkEnableOption "treesitter, also enabled automatically through language options";
@@ -13,7 +13,7 @@ in {
     autotagHtml = mkEnableOption "autoclose and rename html tag";
 
     grammars = mkOption {
-      type = listOf package;
+      type = listOf (nullOr package);
       default = [];
       example = literalExpression ''
         with pkgs.vimPlugins.nvim-treesitter.grammarPlugins; [
