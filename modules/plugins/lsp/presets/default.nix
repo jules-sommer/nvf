@@ -8,6 +8,7 @@
     ./deno.nix
     ./harper.nix
     ./intelephense.nix
+    ./jdt-language-server.nix
     ./jinja-lsp.nix
     ./jq-lsp.nix
     ./julia-languageserver.nix
