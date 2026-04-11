@@ -81,6 +81,8 @@
 
 - Renamed `tofuls-tf` and `tofuls-hcl` to `tofu-ls`.
 
+- Renamed `ruby_lsp` to `ruby-lsp`.
+
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
