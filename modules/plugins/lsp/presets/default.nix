@@ -6,6 +6,7 @@
     ./intelephense.nix
     ./lemminx.nix
     ./nil.nix
+    ./nixd.nix
     ./nushell.nix
     ./ocaml-lsp.nix
     ./ols.nix
