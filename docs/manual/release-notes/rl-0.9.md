@@ -77,6 +77,10 @@
 
 - Renamed `vala_ls` to `vala-language-server`.
 
+- Renamed `terraformls-tf` to `terraform-ls`.
+
+- Renamed `tofuls-tf` to `tofu-ls`.
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):
