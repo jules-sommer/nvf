@@ -6,6 +6,7 @@
     ./taplo.nix
     ./texlab.nix
     ./tinymist.nix
+    ./tofu-ls.nix
     ./tombi.nix
     ./twig-language-server.nix
     ./typescript-go.nix
