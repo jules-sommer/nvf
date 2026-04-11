@@ -6,6 +6,7 @@
     ./qmlls.nix
     ./r-languageserver.nix
     ./ruby-lsp.nix
+    ./ruff.nix
     ./solargraph.nix
     ./sqls.nix
     ./svelte-language-server.nix
