@@ -5,6 +5,7 @@
     ./harper.nix
     ./intelephense.nix
     ./lemminx.nix
+    ./marksman.nix
     ./nil.nix
     ./nimlsp.nix
     ./nixd.nix
