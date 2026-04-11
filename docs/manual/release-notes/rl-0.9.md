@@ -65,6 +65,10 @@
 
 - Moved `vim.lsp.harper-ls` to `vim.lsp.presets.haper`.
 
+- Removed `typst_lsp` from `languages.typst.lsp.servers`, because it is
+  deprecated and thus was pulled from nixpkgs.
+  <https://github.com/NixOS/nixpkgs/commit/bf24296bbe2e31ac7147b02ea645922390ca8f4b>
+
 - Renamed `ts_ls` to `typescript-language-server`.
 
 - Renamed `denols` to `deno`.
