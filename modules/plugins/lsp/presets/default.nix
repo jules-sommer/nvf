@@ -4,6 +4,7 @@
     ./harper.nix
     ./lemminx.nix
     ./taplo.nix
+    ./terraform-ls.nix
     ./texlab.nix
     ./tinymist.nix
     ./tofu-ls.nix
