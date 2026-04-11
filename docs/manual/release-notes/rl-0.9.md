@@ -71,6 +71,8 @@
 
 - Renamed `tsgo` to `typescript-go`.
 
+- Renamed `vala_ls` to `vala-language-server`.
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):
@@ -239,6 +241,9 @@
 
 - Added `vim.lsp.presets.<name>` to contain LSP configurations. This allows for
   more flexibility in nvf and reuse of LSPs across languages.
+
+- Fix `vim.lsp.presets.vala-language-server` to be wrapped correctly with
+  `uncrustify`.
 
 - Fix `tressiter` to allow `null` in grammar options, so they can be filtered
   out.
