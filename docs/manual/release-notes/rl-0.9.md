@@ -77,9 +77,9 @@
 
 - Renamed `vala_ls` to `vala-language-server`.
 
-- Renamed `terraformls-tf` to `terraform-ls`.
+- Renamed `terraformls-tf` and `terraformls-hcl` to `terraform-ls`.
 
-- Renamed `tofuls-tf` to `tofu-ls`.
+- Renamed `tofuls-tf` and `tofuls-hcl` to `tofu-ls`.
 
 ## Changelog {#sec-release-0-9-changelog}
 
