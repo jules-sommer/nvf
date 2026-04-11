@@ -65,6 +65,8 @@
 
 - Moved `vim.lsp.harper-ls` to `vim.lsp.presets.haper`.
 
+- Renamed `denols` to `deno`.
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):
