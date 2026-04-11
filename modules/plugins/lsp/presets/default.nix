@@ -4,6 +4,7 @@
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
+    ./pyrefly.nix
     ./pyright.nix
     ./python-lsp-server.nix
     ./qmlls.nix
