@@ -45,7 +45,6 @@ in {
     ./scala.nix
     ./sql.nix
     ./svelte.nix
-    ./tailwind.nix
     ./terraform.nix
     ./toml.nix
     ./ts.nix

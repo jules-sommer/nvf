@@ -103,7 +103,6 @@ isMaximal: {
       make.enable = false;
       qml.enable = false;
       jinja.enable = false;
-      tailwind.enable = false;
       svelte.enable = false;
       liquid.enable = false;
       tera.enable = false;

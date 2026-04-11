@@ -81,6 +81,9 @@
 
 - Renamed `tofuls-tf` and `tofuls-hcl` to `tofu-ls`.
 
+- Removed `languages.tailwind` which only provided an LSP. Use
+  `lsp.presets.tailwindcss-language-server` instead.
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):

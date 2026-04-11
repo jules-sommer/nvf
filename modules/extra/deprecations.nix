@@ -242,9 +242,6 @@ in {
       (mkRenamedLspServer "svelte")
       (mkRemovedLspPackage "svelte")
 
-      (mkRenamedLspServer "tailwind")
-      (mkRemovedLspPackage "tailwind")
-
       (mkRemovedLspPackage "terraform")
 
       (mkRenamedLspServer "ts")
