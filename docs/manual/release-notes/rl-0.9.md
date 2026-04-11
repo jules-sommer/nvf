@@ -63,6 +63,8 @@
 
 - Added `json5` into `languages.json`. Some options where renamed.
 
+- Moved `vim.lsp.harper-ls` to `vim.lsp.presets.haper`.
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):

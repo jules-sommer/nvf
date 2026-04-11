@@ -34,7 +34,7 @@ isMaximal: {
       lspSignature.enable = !isMaximal; # conflicts with blink in maximal
       otter-nvim.enable = isMaximal;
       nvim-docs-view.enable = isMaximal;
-      harper-ls.enable = isMaximal;
+      presets.harper.enable = isMaximal;
     };
 
     debugger = {
