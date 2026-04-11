@@ -4,6 +4,7 @@
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
+    ./phan.nix
     ./phpactor.nix
     ./pyrefly.nix
     ./pyright.nix
