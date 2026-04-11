@@ -1,5 +1,6 @@
 {
   imports = [
+    ./arduino-language-server.nix
     ./basedpyright.nix
     ./deno.nix
     ./harper.nix
