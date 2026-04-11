@@ -17,6 +17,7 @@
     ./tofu-ls.nix
     ./tombi.nix
     ./twig-language-server.nix
+    ./ty.nix
     ./typescript-go.nix
     ./typescript-language-server.nix
     ./vala-language-server.nix
