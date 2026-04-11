@@ -87,6 +87,8 @@
 
 - Renamed `julials` to `julia-languageserver`.
 
+- Renamed `astro` to `astro-language-server`.
+
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
