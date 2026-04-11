@@ -3,6 +3,7 @@
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
+    ./r-languageserver.nix
     ./ruby-lsp.nix
     ./solargraph.nix
     ./sqls.nix
