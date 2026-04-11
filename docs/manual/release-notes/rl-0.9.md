@@ -83,6 +83,8 @@
 
 - Renamed `ruby_lsp` to `ruby-lsp`.
 
+- Renamed `r_language_server` to `r-languageserver`.
+
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
