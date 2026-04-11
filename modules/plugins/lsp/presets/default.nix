@@ -4,6 +4,7 @@
     ./deno.nix
     ./harper.nix
     ./intelephense.nix
+    ./julia-languageserver.nix
     ./just-lsp.nix
     ./kotlin-language-server.nix
     ./lemminx.nix
