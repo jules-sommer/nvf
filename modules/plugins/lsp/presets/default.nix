@@ -5,6 +5,7 @@
     ./harper.nix
     ./intelephense.nix
     ./lemminx.nix
+    ./ocaml-lsp.nix
     ./ols.nix
     ./openscad-lsp.nix
     ./phan.nix
