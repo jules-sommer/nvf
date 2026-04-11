@@ -85,6 +85,8 @@
 
 - Renamed `r_language_server` to `r-languageserver`.
 
+- Renamed `julials` to `julia-languageserver`.
+
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
