@@ -6,6 +6,7 @@
     ./basedpyright.nix
     ./bash-language-server.nix
     ./deno.nix
+    ./emmet-ls.nix
     ./harper.nix
     ./intelephense.nix
     ./jdt-language-server.nix
