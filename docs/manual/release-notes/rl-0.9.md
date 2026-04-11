@@ -65,6 +65,8 @@
 
 - Moved `vim.lsp.harper-ls` to `vim.lsp.presets.haper`.
 
+- Renamed `ts_ls` to `typescript-language-server`.
+
 - Renamed `denols` to `deno`.
 
 - Renamed `tsgo` to `typescript-go`.
