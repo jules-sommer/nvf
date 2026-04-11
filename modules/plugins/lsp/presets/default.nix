@@ -23,5 +23,6 @@
     ./wgsl-analyzer.nix
     ./yaml-language-server.nix
     ./zls.nix
+    ./zuban.nix
   ];
 }
