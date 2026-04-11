@@ -1,5 +1,6 @@
 {
   imports = [
+    ./basedpyright.nix
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
