@@ -5,6 +5,7 @@
     ./harper.nix
     ./intelephense.nix
     ./lemminx.nix
+    ./lua-language-server.nix
     ./markdown-oxide.nix
     ./marksman.nix
     ./nil.nix
