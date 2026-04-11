@@ -5,5 +5,6 @@
     ./lemminx.nix
     ./tinymist.nix
     ./twig-language-server.nix
+    ./typescript-go.nix
   ];
 }

@@ -67,6 +67,8 @@
 
 - Renamed `denols` to `deno`.
 
+- Renamed `tsgo` to `typescript-go`.
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):
