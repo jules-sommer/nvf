@@ -3,6 +3,7 @@
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
+    ./taplo.nix
     ./tinymist.nix
     ./twig-language-server.nix
     ./typescript-go.nix
