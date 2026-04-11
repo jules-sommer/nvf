@@ -3,6 +3,7 @@
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
+    ./svelte-language-server.nix
     ./tailwindcss-language-server.nix
     ./taplo.nix
     ./terraform-ls.nix
