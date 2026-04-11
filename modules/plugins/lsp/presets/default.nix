@@ -3,8 +3,8 @@
     ./arduino-language-server.nix
     ./asm-lsp.nix
     ./astro-language-server.nix
-    ./bash-language-server.nix
     ./basedpyright.nix
+    ./bash-language-server.nix
     ./deno.nix
     ./harper.nix
     ./intelephense.nix
@@ -47,6 +47,7 @@
     ./typescript-go.nix
     ./typescript-language-server.nix
     ./vala-language-server.nix
+    ./vscode-json-language-server.nix
     ./wgsl-analyzer.nix
     ./yaml-language-server.nix
     ./zls.nix
