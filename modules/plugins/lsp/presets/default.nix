@@ -8,6 +8,7 @@
     ./deno.nix
     ./emmet-ls.nix
     ./harper.nix
+    ./helm-ls.nix
     ./intelephense.nix
     ./jdt-language-server.nix
     ./jinja-lsp.nix

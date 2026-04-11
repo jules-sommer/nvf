@@ -1,0 +1,29 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib.meta) getExe;
+  inherit (lib.modules) mkIf;
+  inherit (lib.options) mkEnableOption;
+
+  cfg = config.vim.lsp.presets.helm-ls;
+in {
+  options.vim.lsp.presets.helm-ls = {
+    enable = mkEnableOption "the Helm Language Server";
+  };
+
+  config = mkIf cfg.enable {
+    vim.lsp.servers.helm-ls = {
+      enable = true;
+      cmd = [(getExe pkgs.helm-ls) "serve"];
+      root_markers = [".git" "Chart.yaml"];
+      capabilities = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true;
+        };
+      };
+    };
+  };
+}
