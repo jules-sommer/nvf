@@ -3,6 +3,7 @@
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
+    ./tailwindcss-language-server.nix
     ./taplo.nix
     ./terraform-ls.nix
     ./texlab.nix
