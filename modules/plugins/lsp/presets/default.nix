@@ -23,6 +23,7 @@
     ./r-languageserver.nix
     ./ruby-lsp.nix
     ./ruff.nix
+    ./rumdl.nix
     ./solargraph.nix
     ./sqls.nix
     ./svelte-language-server.nix
