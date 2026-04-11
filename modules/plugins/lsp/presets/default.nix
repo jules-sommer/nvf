@@ -3,6 +3,7 @@
     ./deno.nix
     ./harper.nix
     ./lemminx.nix
+    ./ruby-lsp.nix
     ./sqls.nix
     ./svelte-language-server.nix
     ./tailwindcss-language-server.nix
