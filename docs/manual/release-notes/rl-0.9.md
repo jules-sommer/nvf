@@ -89,6 +89,8 @@
 
 - Renamed `astro` to `astro-language-server`.
 
+- Renamed `bash-ls` to `bash-language-server`.
+
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
