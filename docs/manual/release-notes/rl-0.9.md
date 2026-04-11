@@ -93,6 +93,8 @@
 
 - Renamed `jsonls` to `vscode-json-language-server`.
 
+- Renamed `jdtls` to `jdt-language-server`.
+
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
@@ -228,6 +230,7 @@
     {command}`:healthcheck` doesn't know that.
   - Remove [which-key.nvim] `<leader>o` `+Notes` description which did not
     actually correspond to any keybinds.
+
 - Allow disabling nvf's vendored keymaps by toggling `vendoredKeymaps.enable`.
 
 [pyrox0](https://github.com/pyrox0):
