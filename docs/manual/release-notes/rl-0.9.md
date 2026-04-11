@@ -91,6 +91,8 @@
 
 - Renamed `bash-ls` to `bash-language-server`.
 
+- Renamed `jsonls` to `vscode-json-language-server`.
+
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
