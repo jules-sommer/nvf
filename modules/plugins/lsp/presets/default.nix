@@ -4,5 +4,6 @@
     ./harper.nix
     ./lemminx.nix
     ./tinymist.nix
+    ./twig-language-server.nix
   ];
 }
