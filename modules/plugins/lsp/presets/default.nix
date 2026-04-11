@@ -5,6 +5,7 @@
     ./harper.nix
     ./intelephense.nix
     ./lemminx.nix
+    ./openscad-lsp.nix
     ./phan.nix
     ./phpactor.nix
     ./pyrefly.nix
