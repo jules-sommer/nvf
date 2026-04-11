@@ -3,6 +3,7 @@
     ./basedpyright.nix
     ./deno.nix
     ./harper.nix
+    ./intelephense.nix
     ./lemminx.nix
     ./phan.nix
     ./phpactor.nix
