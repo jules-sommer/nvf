@@ -9,5 +9,6 @@
     ./typescript-language-server.nix
     ./vala-language-server.nix
     ./wgsl-analyzer.nix
+    ./yaml-language-server.nix
   ];
 }
