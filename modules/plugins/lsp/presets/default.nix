@@ -3,6 +3,7 @@
     ./arduino-language-server.nix
     ./asm-lsp.nix
     ./astro-language-server.nix
+    ./bash-language-server.nix
     ./basedpyright.nix
     ./deno.nix
     ./harper.nix
