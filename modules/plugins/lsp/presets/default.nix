@@ -5,6 +5,7 @@
     ./lemminx.nix
     ./taplo.nix
     ./tinymist.nix
+    ./tombi.nix
     ./twig-language-server.nix
     ./typescript-go.nix
     ./typescript-language-server.nix
