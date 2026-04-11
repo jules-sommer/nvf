@@ -37,6 +37,7 @@
     ./rumdl.nix
     ./solargraph.nix
     ./sqls.nix
+    ./superhtml.nix
     ./svelte-language-server.nix
     ./tailwindcss-language-server.nix
     ./taplo.nix
