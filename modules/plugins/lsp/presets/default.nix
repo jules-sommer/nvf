@@ -5,6 +5,7 @@
     ./harper.nix
     ./intelephense.nix
     ./lemminx.nix
+    ./nil.nix
     ./nushell.nix
     ./ocaml-lsp.nix
     ./ols.nix
