@@ -4,6 +4,7 @@
     ./harper.nix
     ./lemminx.nix
     ./ruby-lsp.nix
+    ./solargraph.nix
     ./sqls.nix
     ./svelte-language-server.nix
     ./tailwindcss-language-server.nix
