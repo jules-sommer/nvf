@@ -4,6 +4,7 @@
     ./harper.nix
     ./lemminx.nix
     ./taplo.nix
+    ./texlab.nix
     ./tinymist.nix
     ./tombi.nix
     ./twig-language-server.nix
