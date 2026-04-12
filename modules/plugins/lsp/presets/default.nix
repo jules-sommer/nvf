@@ -5,9 +5,10 @@
     ./astro-language-server.nix
     ./basedpyright.nix
     ./bash-language-server.nix
+    ./clojure-lsp.nix
+    ./cue.nix
     ./dart.nix
     ./deno.nix
-    ./cue.nix
     ./elixir-ls.nix
     ./elm-language-server.nix
     ./emmet-ls.nix
