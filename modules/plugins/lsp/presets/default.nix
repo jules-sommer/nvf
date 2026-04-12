@@ -7,6 +7,7 @@
     ./bash-language-server.nix
     ./deno.nix
     ./emmet-ls.nix
+    ./gopls.nix
     ./harper.nix
     ./helm-ls.nix
     ./intelephense.nix
