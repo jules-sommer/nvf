@@ -93,6 +93,8 @@
 
 - Renamed `jsonls` to `vscode-json-language-server`.
 
+- Renamed `cssls` to `vscode-css-language-server`.
+
 - Renamed `jdtls` to `jdt-language-server`.
 
 - Renamed `elixirls` to `elixir-ls`.
