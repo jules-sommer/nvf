@@ -95,6 +95,8 @@
 
 - Renamed `jdtls` to `jdt-language-server`.
 
+- Renamed `elixirls` to `elixir-ls`.
+
 - Removed `languages.tailwind` which only provided an LSP. Use
   `lsp.presets.tailwindcss-language-server` instead.
 
