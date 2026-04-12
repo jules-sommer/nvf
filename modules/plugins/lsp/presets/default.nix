@@ -5,6 +5,7 @@
     ./astro-language-server.nix
     ./basedpyright.nix
     ./bash-language-server.nix
+    ./dart.nix
     ./deno.nix
     ./elixir-ls.nix
     ./elm-language-server.nix
