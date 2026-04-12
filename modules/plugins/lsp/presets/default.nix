@@ -5,6 +5,7 @@
     ./astro-language-server.nix
     ./basedpyright.nix
     ./bash-language-server.nix
+    ./ccls.nix
     ./clojure-lsp.nix
     ./cue.nix
     ./dart.nix
