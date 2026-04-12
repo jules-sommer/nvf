@@ -61,6 +61,7 @@
     ./typescript-go.nix
     ./typescript-language-server.nix
     ./vala-language-server.nix
+    ./vscode-css-language-server.nix
     ./vscode-json-language-server.nix
     ./wgsl-analyzer.nix
     ./yaml-language-server.nix
