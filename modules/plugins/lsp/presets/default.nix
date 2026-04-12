@@ -6,6 +6,7 @@
     ./basedpyright.nix
     ./bash-language-server.nix
     ./deno.nix
+    ./elixir-ls.nix
     ./elm-language-server.nix
     ./emmet-ls.nix
     ./fsautocomplete.nix
