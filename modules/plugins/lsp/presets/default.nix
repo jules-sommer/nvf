@@ -7,6 +7,7 @@
     ./bash-language-server.nix
     ./deno.nix
     ./emmet-ls.nix
+    ./fsautocomplete.nix
     ./gleam.nix
     ./glsl_analyzer.nix
     ./gopls.nix
