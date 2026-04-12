@@ -6,6 +6,7 @@
     ./basedpyright.nix
     ./bash-language-server.nix
     ./ccls.nix
+    ./clangd.nix
     ./clojure-lsp.nix
     ./cue.nix
     ./dart.nix
