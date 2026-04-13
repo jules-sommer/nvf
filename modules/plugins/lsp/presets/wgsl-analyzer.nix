@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.wgsl-analyzer;
 in {
   options.vim.lsp.presets.wgsl-analyzer = {
-    enable = mkEnableOption "the WGSL-Analyzer Language Server";
+    enable = mkLspPresetEnableOption "wgsl-analyzer" "WGSL Analyzer" [];
   };
 
   config = mkIf cfg.enable {

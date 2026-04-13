@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.just-lsp;
 in {
   options.vim.lsp.presets.just-lsp = {
-    enable = mkEnableOption "the Just Language Server";
+    enable = mkLspPresetEnableOption "just-lsp" "Just" [];
   };
 
   config = mkIf cfg.enable {

@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.solargraph;
 in {
   options.vim.lsp.presets.solargraph = {
-    enable = mkEnableOption "the Ruby Solargraph Language Server";
+    enable = mkLspPresetEnableOption "solargraph" "Solargraph" [];
   };
 
   config = mkIf cfg.enable {

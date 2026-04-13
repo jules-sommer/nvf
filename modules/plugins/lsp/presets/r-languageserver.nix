@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.r-languageserver;
 in {
   options.vim.lsp.presets.r-languageserver = {
-    enable = mkEnableOption "the R Language Server";
+    enable = mkLspPresetEnableOption "r-languageserver" "R" [];
   };
 
   config = mkIf cfg.enable {

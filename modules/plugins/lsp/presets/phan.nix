@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.phan;
 in {
   options.vim.lsp.presets.phan = {
-    enable = mkEnableOption "the Phan Language Server";
+    enable = mkLspPresetEnableOption "phan" "Phan" [];
   };
 
   config = mkIf cfg.enable {

@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.clojure-lsp;
 in {
   options.vim.lsp.presets.clojure-lsp = {
-    enable = mkEnableOption "the Clojure Language Server";
+    enable = mkLspPresetEnableOption "clojure-lsp" "Clojure" [];
   };
 
   config = mkIf cfg.enable {

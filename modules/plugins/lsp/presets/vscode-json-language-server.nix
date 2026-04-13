@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.vscode-json-language-server;
 in {
   options.vim.lsp.presets.vscode-json-language-server = {
-    enable = mkEnableOption "the VSCode JSON Language Server";
+    enable = mkLspPresetEnableOption "vscode-json-language-server" "VSCode JSON" [];
   };
 
   config = mkIf cfg.enable {

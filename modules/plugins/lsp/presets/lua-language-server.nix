@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.lua-language-server;
 in {
   options.vim.lsp.presets.lua-language-server = {
-    enable = mkEnableOption "the Lua Language Server";
+    enable = mkLspPresetEnableOption "lua-language-server" "Lua" [];
   };
 
   config = mkIf cfg.enable {

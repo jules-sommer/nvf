@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.terraform-ls;
 in {
   options.vim.lsp.presets.terraform-ls = {
-    enable = mkEnableOption "the Terraform Language Server";
+    enable = mkLspPresetEnableOption "terrraform-ls" "Terraform" [];
   };
 
   config = mkIf cfg.enable {

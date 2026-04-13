@@ -6,13 +6,70 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.tailwindcss-language-server;
+
+  filetypes = [
+    # html
+    "aspnetcorerazor"
+    "astro"
+    "astro-markdown"
+    "blade"
+    "clojure"
+    "django-html"
+    "htmldjango"
+    "edge"
+    "eelixir"
+    "elixir"
+    "ejs"
+    "erb"
+    "eruby"
+    "gohtml"
+    "gohtmltmpl"
+    "haml"
+    "handlebars"
+    "hbs"
+    "html"
+    "htmlangular"
+    "html-eex"
+    "heex"
+    "jade"
+    "leaf"
+    "liquid"
+    "markdown"
+    "mdx"
+    "mustache"
+    "njk"
+    "nunjucks"
+    "php"
+    "razor"
+    "slim"
+    "twig"
+    # css
+    "css"
+    "less"
+    "postcss"
+    "sass"
+    "scss"
+    "stylus"
+    "sugarss"
+    # js
+    "javascript"
+    "javascriptreact"
+    "reason"
+    "rescript"
+    "typescript"
+    "typescriptreact"
+    # mixed
+    "vue"
+    "svelte"
+    "templ"
+  ];
 in {
   options.vim.lsp.presets.tailwindcss-language-server = {
-    enable = mkEnableOption "the Tailwind CSS Language Server";
+    enable = mkLspPresetEnableOption "tailwindcss-language-server" "Tailwind CSS" filetypes;
   };
 
   config = mkIf cfg.enable {
@@ -20,62 +77,7 @@ in {
       enable = true;
       cmd = [(getExe pkgs.tailwindcss-language-server) "--stdio"];
       root_markers = [".git"];
-      filetypes = [
-        # html
-        "aspnetcorerazor"
-        "astro"
-        "astro-markdown"
-        "blade"
-        "clojure"
-        "django-html"
-        "htmldjango"
-        "edge"
-        "eelixir"
-        "elixir"
-        "ejs"
-        "erb"
-        "eruby"
-        "gohtml"
-        "gohtmltmpl"
-        "haml"
-        "handlebars"
-        "hbs"
-        "html"
-        "htmlangular"
-        "html-eex"
-        "heex"
-        "jade"
-        "leaf"
-        "liquid"
-        "markdown"
-        "mdx"
-        "mustache"
-        "njk"
-        "nunjucks"
-        "php"
-        "razor"
-        "slim"
-        "twig"
-        # css
-        "css"
-        "less"
-        "postcss"
-        "sass"
-        "scss"
-        "stylus"
-        "sugarss"
-        # js
-        "javascript"
-        "javascriptreact"
-        "reason"
-        "rescript"
-        "typescript"
-        "typescriptreact"
-        # mixed
-        "vue"
-        "svelte"
-        "templ"
-      ];
+      inherit filetypes;
       settings = {
         tailwindCSS = {
           validate = true;

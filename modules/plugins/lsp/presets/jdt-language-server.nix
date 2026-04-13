@@ -6,14 +6,14 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
   inherit (lib.nvim.dag) entryBefore;
 
   cfg = config.vim.lsp.presets.jdt-language-server;
 in {
   options.vim.lsp.presets.jdt-language-server = {
-    enable = mkEnableOption "the Eclipse JDT Language Server";
+    enable = mkLspPresetEnableOption "jdt-language-server" "Eclipse JDT" [];
   };
 
   config = mkIf cfg.enable {

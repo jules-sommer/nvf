@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.ols;
 in {
   options.vim.lsp.presets.ols = {
-    enable = mkEnableOption "the Odin Language Server";
+    enable = mkLspPresetEnableOption "ols" "Odin" [];
   };
 
   config = mkIf cfg.enable {

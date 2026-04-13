@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.qmlls;
 in {
   options.vim.lsp.presets.qmlls = {
-    enable = mkEnableOption "the QML Language Server";
+    enable = mkLspPresetEnableOption "qmlls" "QML" [];
   };
 
   config = mkIf cfg.enable {

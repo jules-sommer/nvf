@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.sqls;
 in {
   options.vim.lsp.presets.sqls = {
-    enable = mkEnableOption "the SQL Language Server";
+    enable = mkLspPresetEnableOption "sqls" "SQL" [];
   };
 
   config = mkIf cfg.enable {

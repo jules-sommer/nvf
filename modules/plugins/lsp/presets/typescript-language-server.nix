@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.typescript-language-server;
 in {
   options.vim.lsp.presets.typescript-language-server = {
-    enable = mkEnableOption "the Typescript Language Server";
+    enable = mkLspPresetEnableOption "typescript-language-server" "TypeScript" [];
   };
 
   config = mkIf cfg.enable {

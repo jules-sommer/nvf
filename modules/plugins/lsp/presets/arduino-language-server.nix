@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe getExe';
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.arduino-language-server;
 in {
   options.vim.lsp.presets.arduino-language-server = {
-    enable = mkEnableOption "the Arduino Language Server";
+    enable = mkLspPresetEnableOption "arduino-language-server" "Arduino" [];
   };
 
   config = mkIf cfg.enable {

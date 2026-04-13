@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.gleam;
 in {
   options.vim.lsp.presets.gleam = {
-    enable = mkEnableOption "the Gleam Language Server";
+    enable = mkLspPresetEnableOption "gleam" "Gleam" [];
   };
 
   config = mkIf cfg.enable {

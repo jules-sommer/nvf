@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.ruff;
 in {
   options.vim.lsp.presets.ruff = {
-    enable = mkEnableOption "the Ruff Python Language Server";
+    enable = mkLspPresetEnableOption "ruff" "Ruff" [];
   };
 
   config = mkIf cfg.enable {

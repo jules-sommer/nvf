@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.ccls;
 in {
   options.vim.lsp.presets.ccls = {
-    enable = mkEnableOption "the CC Language Server";
+    enable = mkLspPresetEnableOption "ccls" "CC" [];
   };
 
   config = mkIf cfg.enable {

@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.cue;
 in {
   options.vim.lsp.presets.cue = {
-    enable = mkEnableOption "the CUE Language Server";
+    enable = mkLspPresetEnableOption "cue" "Cue" [];
   };
 
   config = mkIf cfg.enable {

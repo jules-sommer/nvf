@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.typescript-go;
 in {
   options.vim.lsp.presets.typescript-go = {
-    enable = mkEnableOption "the experimental Typescript Go Language Server";
+    enable = mkLspPresetEnableOption "typescript-go" "experimental TypeScript Go" [];
   };
 
   config = mkIf cfg.enable {

@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.fsautocomplete;
 in {
   options.vim.lsp.presets.fsautocomplete = {
-    enable = mkEnableOption "the F# Autocomplete Language Server";
+    enable = mkLspPresetEnableOption "fsautocomplete" "F# Autocomplete" [];
   };
 
   config = mkIf cfg.enable {

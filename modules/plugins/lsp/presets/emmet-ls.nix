@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.emmet-ls;
 in {
   options.vim.lsp.presets.emmet-ls = {
-    enable = mkEnableOption "the Emmet Language Server";
+    enable = mkLspPresetEnableOption "emmet-ls" "Emmet" [];
   };
 
   config = mkIf cfg.enable {

@@ -6,14 +6,14 @@
 }: let
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
   inherit (lib.nvim.dag) entryBefore;
 
   cfg = config.vim.lsp.presets.basedpyright;
 in {
   options.vim.lsp.presets.basedpyright = {
-    enable = mkEnableOption "the Based Pyright Language Server";
+    enable = mkLspPresetEnableOption "basedpyright" "Based Pyright" [];
   };
 
   config = mkIf cfg.enable {

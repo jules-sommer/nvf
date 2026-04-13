@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.svelte-language-server;
 in {
   options.vim.lsp.presets.svelte-language-server = {
-    enable = mkEnableOption "the Svelete Language Server";
+    enable = mkLspPresetEnableOption "svelte-language-server" "Svelte" [];
   };
 
   config = mkIf cfg.enable {

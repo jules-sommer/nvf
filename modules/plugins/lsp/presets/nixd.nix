@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.nixd;
 in {
   options.vim.lsp.presets.nixd = {
-    enable = mkEnableOption "the NixD Language Server";
+    enable = mkLspPresetEnableOption "nixd" "Nixd" [];
   };
 
   config = mkIf cfg.enable {

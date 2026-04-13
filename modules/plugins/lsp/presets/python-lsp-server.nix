@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.python-lsp-server;
 in {
   options.vim.lsp.presets.python-lsp-server = {
-    enable = mkEnableOption "the Python Language Server";
+    enable = mkLspPresetEnableOption "python-lsp-server" "Python" [];
   };
 
   config = mkIf cfg.enable {

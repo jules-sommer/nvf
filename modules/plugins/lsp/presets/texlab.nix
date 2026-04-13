@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.texlab;
 in {
   options.vim.lsp.presets.texlab = {
-    enable = mkEnableOption "the TeXLab Language Server";
+    enable = mkLspPresetEnableOption "texlab" "TeXLab" [];
   };
 
   config = mkIf cfg.enable {

@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.yaml-language-server;
 in {
   options.vim.lsp.presets.yaml-language-server = {
-    enable = mkEnableOption "the YAML Language Server";
+    enable = mkLspPresetEnableOption "yaml-language-server" "YAML" [];
   };
 
   config = mkIf cfg.enable {

@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.jq-lsp;
 in {
   options.vim.lsp.presets.jq-lsp = {
-    enable = mkEnableOption "the JQ Language Server";
+    enable = mkLspPresetEnableOption "jq-lsp" "JQ" [];
   };
 
   config = mkIf cfg.enable {

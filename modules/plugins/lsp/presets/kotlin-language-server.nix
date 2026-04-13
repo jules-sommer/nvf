@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.kotlin-language-server;
 in {
   options.vim.lsp.presets.kotlin-language-server = {
-    enable = mkEnableOption "the Kotlin Language Server";
+    enable = mkLspPresetEnableOption "kotlin-language-server" "Kotlin" [];
   };
 
   config = mkIf cfg.enable {

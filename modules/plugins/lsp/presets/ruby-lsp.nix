@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.ruby-lsp;
 in {
   options.vim.lsp.presets.ruby-lsp = {
-    enable = mkEnableOption "the Ruby Language Server";
+    enable = mkLspPresetEnableOption "ruby-lsp" "Ruby" [];
   };
 
   config = mkIf cfg.enable {

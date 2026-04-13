@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.lemminx;
 in {
   options.vim.lsp.presets.lemminx = {
-    enable = mkEnableOption "Lemminx Language Server";
+    enable = mkLspPresetEnableOption "lemminx" "Lemminx" [];
   };
 
   config = mkIf cfg.enable {

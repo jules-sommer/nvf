@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.jinja-lsp;
 in {
   options.vim.lsp.presets.jinja-lsp = {
-    enable = mkEnableOption "the Jinja Language Server";
+    enable = mkLspPresetEnableOption "jinja-lsp" "Jinja" [];
   };
 
   config = mkIf cfg.enable {

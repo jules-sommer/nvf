@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.helm-ls;
 in {
   options.vim.lsp.presets.helm-ls = {
-    enable = mkEnableOption "the Helm Language Server";
+    enable = mkLspPresetEnableOption "helm-ls" "Helm" [];
   };
 
   config = mkIf cfg.enable {

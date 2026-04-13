@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.marksman;
 in {
   options.vim.lsp.presets.marksman = {
-    enable = mkEnableOption "the Marksman Language Server";
+    enable = mkLspPresetEnableOption "marksman" "Marksman" [];
   };
 
   config = mkIf cfg.enable {

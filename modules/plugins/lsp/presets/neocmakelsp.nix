@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.neocmakelsp;
 in {
   options.vim.lsp.presets.neocmakelsp = {
-    enable = mkEnableOption "the Neo CMake Language Server";
+    enable = mkLspPresetEnableOption "neocmakelsp" "NeoCmake" [];
   };
 
   config = mkIf cfg.enable {

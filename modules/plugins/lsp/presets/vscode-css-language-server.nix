@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.vscode-css-language-server;
 in {
   options.vim.lsp.presets.vscode-css-language-server = {
-    enable = mkEnableOption "the VSCode CSS Language Server";
+    enable = mkLspPresetEnableOption "vscode-css-language-server" "VSCode CSS" [];
   };
 
   config = mkIf cfg.enable {

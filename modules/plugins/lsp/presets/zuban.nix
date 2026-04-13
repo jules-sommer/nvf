@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.zuban;
 in {
   options.vim.lsp.presets.zuban = {
-    enable = mkEnableOption "the Zuban Python Language Server";
+    enable = mkLspPresetEnableOption "zuban" "Zuban" [];
   };
 
   config = mkIf cfg.enable {

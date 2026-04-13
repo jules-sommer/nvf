@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.elixir-ls;
 in {
   options.vim.lsp.presets.elixir-ls = {
-    enable = mkEnableOption "the Elixir Language Server";
+    enable = mkLspPresetEnableOption "elixir-ls" "Elixir" [];
   };
 
   config = mkIf cfg.enable {

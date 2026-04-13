@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.nushell;
 in {
   options.vim.lsp.presets.nushell = {
-    enable = mkEnableOption "the NuShell Language Server";
+    enable = mkLspPresetEnableOption "nushell" "NuShell" [];
   };
 
   config = mkIf cfg.enable {

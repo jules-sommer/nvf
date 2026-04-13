@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.tofu-ls;
 in {
   options.vim.lsp.presets.tofu-ls = {
-    enable = mkEnableOption "the OpenTofu Language Server";
+    enable = mkLspPresetEnableOption "tofu-ls" "OpenTofu" [];
   };
 
   config = mkIf cfg.enable {

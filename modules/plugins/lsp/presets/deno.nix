@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.deno;
 in {
   options.vim.lsp.presets.deno = {
-    enable = mkEnableOption "the Deno Language Server";
+    enable = mkLspPresetEnableOption "deno" "Deno" [];
   };
 
   config = mkIf cfg.enable {

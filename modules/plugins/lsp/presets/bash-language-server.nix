@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.bash-language-server;
 in {
   options.vim.lsp.presets.bash-language-server = {
-    enable = mkEnableOption "the Bash Language Server";
+    enable = mkLspPresetEnableOption "bash-language-server" "Bash" [];
   };
 
   config = mkIf cfg.enable {

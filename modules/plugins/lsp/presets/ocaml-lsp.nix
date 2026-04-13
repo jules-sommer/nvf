@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.ocaml-lsp;
 in {
   options.vim.lsp.presets.ocaml-lsp = {
-    enable = mkEnableOption "the OCaml Language Server";
+    enable = mkLspPresetEnableOption "ocaml-lsp" "OCaml" [];
   };
 
   config = mkIf cfg.enable {

@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.gopls;
 in {
   options.vim.lsp.presets.gopls = {
-    enable = mkEnableOption "the official Go Language Server";
+    enable = mkLspPresetEnableOption "gopls" "Go" [];
   };
 
   config = mkIf cfg.enable {

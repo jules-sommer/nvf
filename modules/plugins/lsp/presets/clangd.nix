@@ -6,13 +6,13 @@
 }: let
   inherit (lib.meta) getExe';
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.lsp.presets.clangd;
 in {
   options.vim.lsp.presets.clangd = {
-    enable = mkEnableOption "the Clangd Language Server";
+    enable = mkLspPresetEnableOption "clangd" "Clangd" [];
   };
 
   config = mkIf cfg.enable {

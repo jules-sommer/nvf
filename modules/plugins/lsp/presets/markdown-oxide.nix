@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.markdown-oxide;
 in {
   options.vim.lsp.presets.markdown-oxide = {
-    enable = mkEnableOption "the Markdown-Oxide Language Server";
+    enable = mkLspPresetEnableOption "markdown-oxide" "Markdown Oxide" [];
   };
 
   config = mkIf cfg.enable {

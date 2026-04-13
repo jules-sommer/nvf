@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.twig-language-server;
 in {
   options.vim.lsp.presets.twig-language-server = {
-    enable = mkEnableOption "Twig Language Server";
+    enable = mkLspPresetEnableOption "twig-language-server" "Twig" [];
   };
 
   config = mkIf cfg.enable {

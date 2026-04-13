@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.tombi;
 in {
   options.vim.lsp.presets.tombi = {
-    enable = mkEnableOption "the Tombi Language Server (AI Slop)";
+    enable = mkLspPresetEnableOption "tombi" "Tombi (AI Slop)" [];
   };
 
   config = mkIf cfg.enable {

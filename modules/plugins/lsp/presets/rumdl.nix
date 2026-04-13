@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.rumdl;
 in {
   options.vim.lsp.presets.rumdl = {
-    enable = mkEnableOption "the Rumdl Language Server";
+    enable = mkLspPresetEnableOption "rumdl" "Rumdl" [];
   };
 
   config = mkIf cfg.enable {

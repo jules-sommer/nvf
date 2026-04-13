@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.superhtml;
 in {
   options.vim.lsp.presets.superhtml = {
-    enable = mkEnableOption "the SuperHTML Language Server";
+    enable = mkLspPresetEnableOption "superhtml" "SuperHTML" [];
   };
 
   config = mkIf cfg.enable {

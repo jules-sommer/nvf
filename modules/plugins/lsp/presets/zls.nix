@@ -6,12 +6,12 @@
 }: let
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf;
-  inherit (lib.options) mkEnableOption;
+  inherit (lib.nvim.types) mkLspPresetEnableOption;
 
   cfg = config.vim.lsp.presets.zls;
 in {
   options.vim.lsp.presets.zls = {
-    enable = mkEnableOption "the Zig Language Server";
+    enable = mkLspPresetEnableOption "zls" "Zig" [];
   };
 
   config = mkIf cfg.enable {
