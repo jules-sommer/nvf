@@ -12,7 +12,7 @@
   inherit (lib.types) enum bool listOf;
   inherit (lib.nvim.attrsets) mapListToAttrs;
   inherit (lib.nvim.lua) toLuaObject;
-  inherit (lib.nvim.types) mkGrammarOption diagnostics mkPluginSetupOption deprecatedSingleOrListOf;
+  inherit (lib.nvim.types) mkGrammarOption diagnostics mkPluginSetupOption deprecatedSingleOrListOf enumWithRename;
   inherit (lib.nvim.dag) entryAnywhere;
 
   cfg = config.vim.languages.ts;
@@ -99,7 +99,14 @@ in {
         };
 
       servers = mkOption {
-        type = listOf (enum servers);
+        type = listOf (enumWithRename
+          "vim.languages.ts.lsp.servers"
+          servers
+          {
+            ts_ls = "typescript-language-server";
+            denols = "deno";
+            tsgo = "typescript-go";
+          });
         default = defaultServers;
         description = "Typescript/Javascript LSP server to use";
       };

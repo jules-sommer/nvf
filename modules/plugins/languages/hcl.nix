@@ -10,7 +10,7 @@
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.types) enum listOf;
-  inherit (lib.nvim.types) mkGrammarOption;
+  inherit (lib.nvim.types) mkGrammarOption enumWithRename;
   inherit (lib.nvim.attrsets) mapListToAttrs;
 
   cfg = config.vim.languages.hcl;
@@ -51,7 +51,13 @@ in {
           defaultText = literalExpression "config.vim.lsp.enable";
         };
       servers = mkOption {
-        type = listOf (enum servers);
+        type = listOf (enumWithRename
+          "vim.languages.hcl.lsp.servers"
+          servers
+          {
+            terraformls-hcl = "terraform-ls";
+            tofuls-hcl = "tofu-ls";
+          });
         default = defaultServers;
         description = "HCL LSP server to use";
       };

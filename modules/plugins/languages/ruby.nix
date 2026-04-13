@@ -9,7 +9,7 @@
   inherit (lib) genAttrs;
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf mkMerge;
-  inherit (lib.nvim.types) mkGrammarOption diagnostics deprecatedSingleOrListOf;
+  inherit (lib.nvim.types) mkGrammarOption diagnostics deprecatedSingleOrListOf enumWithRename;
   inherit (lib.types) enum listOf;
   inherit (lib.nvim.attrsets) mapListToAttrs;
 
@@ -56,7 +56,12 @@ in {
         };
 
       servers = mkOption {
-        type = listOf (enum servers);
+        type = listOf (enumWithRename
+          "vim.languages.ruby.lsp.servers"
+          servers
+          {
+            ruby_lsp = "ruby-lsp";
+          });
         default = defaultServers;
         description = "Ruby LSP server to use";
       };

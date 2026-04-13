@@ -7,8 +7,8 @@
   inherit (lib.options) literalExpression mkEnableOption mkOption;
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib) genAttrs;
-  inherit (lib.types) listOf enum;
-  inherit (lib.nvim.types) mkGrammarOption;
+  inherit (lib.types) listOf;
+  inherit (lib.nvim.types) mkGrammarOption enumWithRename;
 
   cfg = config.vim.languages.java;
 
@@ -36,7 +36,12 @@ in {
           defaultText = literalExpression "config.vim.lsp.enable";
         };
       servers = mkOption {
-        type = listOf (enum servers);
+        type = listOf (enumWithRename
+          "vim.languages.java.lsp.servers"
+          servers
+          {
+            jdtls = "jdt-language-server";
+          });
         default = defaultServers;
         description = "Java LSP server to use";
       };

@@ -10,7 +10,7 @@
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.types) enum bool listOf;
   inherit (lib) genAttrs;
-  inherit (lib.nvim.types) diagnostics mkGrammarOption deprecatedSingleOrListOf;
+  inherit (lib.nvim.types) diagnostics mkGrammarOption deprecatedSingleOrListOf enumWithRename;
   inherit (lib.nvim.attrsets) mapListToAttrs;
 
   cfg = config.vim.languages.bash;
@@ -53,7 +53,12 @@ in {
           defaultText = literalExpression "config.vim.lsp.enable";
         };
       servers = mkOption {
-        type = listOf (enum servers);
+        type = listOf (enumWithRename
+          "vim.languages.bash.lsp.servers"
+          servers
+          {
+            bash-ls = "bash-language-server";
+          });
         default = defaultServers;
         description = "Bash LSP server to use";
       };

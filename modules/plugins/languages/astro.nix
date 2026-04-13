@@ -11,7 +11,7 @@
   inherit (lib.meta) getExe;
   inherit (lib.types) enum coercedTo listOf;
   inherit (lib.nvim.attrsets) mapListToAttrs;
-  inherit (lib.nvim.types) mkGrammarOption diagnostics deprecatedSingleOrListOf;
+  inherit (lib.nvim.types) mkGrammarOption diagnostics deprecatedSingleOrListOf enumWithRename;
   inherit (lib) genAttrs;
 
   cfg = config.vim.languages.astro;
@@ -85,7 +85,12 @@ in {
           defaultText = literalExpression "config.vim.lsp.enable";
         };
       servers = mkOption {
-        type = listOf (enum servers);
+        type = listOf (enumWithRename
+          "vim.languages.astro.lsp.servers"
+          servers
+          {
+            astro = "astro-language-server";
+          });
         default = defaultServers;
         description = "Astro LSP server to use";
       };

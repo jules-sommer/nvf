@@ -10,7 +10,7 @@
   inherit (lib) genAttrs;
   inherit (lib.meta) getExe;
   inherit (lib.types) enum listOf;
-  inherit (lib.nvim.types) mkGrammarOption;
+  inherit (lib.nvim.types) mkGrammarOption enumWithRename;
   inherit (lib.nvim.attrsets) mapListToAttrs;
 
   cfg = config.vim.languages.terraform;
@@ -53,7 +53,13 @@ in {
           defaultText = literalExpression "config.vim.lsp.enable";
         };
       servers = mkOption {
-        type = listOf (enum servers);
+        type = listOf (enumWithRename
+          "vim.languages.terraform.lsp.servers"
+          servers
+          {
+            terraformls-tf = "terraform-ls";
+            tofuls-tf = "tofu-ls";
+          });
         default = defaultServers;
         description = "Terraform LSP server to use";
       };

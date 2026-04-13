@@ -10,7 +10,7 @@
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.types) enum listOf;
-  inherit (lib.nvim.types) mkGrammarOption deprecatedSingleOrListOf;
+  inherit (lib.nvim.types) mkGrammarOption deprecatedSingleOrListOf enumWithRename;
   inherit (lib.nvim.attrsets) mapListToAttrs;
 
   cfg = config.vim.languages.css;
@@ -56,7 +56,12 @@ in {
         };
 
       servers = mkOption {
-        type = listOf (enum servers);
+        type = listOf (enumWithRename
+          "vim.languages.css.lsp.servers"
+          servers
+          {
+            cssls = "vscode-css-language-server";
+          });
         default = defaultServer;
         description = "CSS LSP server to use";
       };
