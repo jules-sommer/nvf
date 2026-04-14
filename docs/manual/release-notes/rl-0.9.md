@@ -108,6 +108,10 @@
   `languages.go.treesitter.gotmplPackage` to
   {option}`vim.languages.go.treesitter.gotmpl.package`
 
+[CaueAnjos](https://github.com/caueanjos)
+
+- Renamed `roslyn_ls` to `roslyn-ls`
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):

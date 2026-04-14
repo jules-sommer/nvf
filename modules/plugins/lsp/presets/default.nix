@@ -49,6 +49,7 @@
     ./python-lsp-server.nix
     ./qmlls.nix
     ./r-languageserver.nix
+    ./roslyn-ls.nix
     ./ruby-lsp.nix
     ./ruff.nix
     ./rumdl.nix
