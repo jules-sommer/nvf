@@ -91,7 +91,7 @@ consistency and to avoid clashing opinions on how formatters should behave, we
 are very opinionated on how those files should be formatted.
 
 - Nix files **must** be formatted with the Alejandra formatter, following some
-  specific tips found in [Nix style section](#nix-sec-code-style-nix).
+  specific tips found in [Nix style section](#sec-code-style-nix).
 - Markdown files **must** be formatted with the `deno fmt` command, as described
   in the [Markdown style section](#sec-code-style-markdown).
 
