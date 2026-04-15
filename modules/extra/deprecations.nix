@@ -349,6 +349,9 @@ in {
     [
       (mkRenamedOptionModule ["vim" "lsp" "harper-ls" "enable"] ["vim" "lsp" "presets" "harper" "enable"])
       (mkRenamedOptionModule ["vim" "lsp" "harper-ls" "settings"] ["vim" "lsp" "servers" "harper" "settings"])
+      (mkRenamedOptionModule ["vim" "languages" "tailwind" "enable"] ["vim" "lsp" "presets" "tailwindcss-language-server" "enable"])
+      (mkRenamedOptionModule ["vim" "languages" "tailwind" "lsp" "enable"] ["vim" "lsp" "presets" "tailwindcss-language-server" "enable"])
+      (mkRenamedOptionModule ["vim" "languages" "tailwind" "lsp" "servers"] ["vim" "lsp" "presets" "tailwindcss-language-server" "enable"])
     ]
   ];
 }
