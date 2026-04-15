@@ -249,7 +249,7 @@
 - Added [Pyrefly](https://pyrefly.org/) and [zuban](https://zubanls.com/)
   support to `languages.python`
 
-- Added TOML support via {option}`languages.toml` and the
+- Added TOML support via {option}`vim.languages.toml.enable` and the
   [Tombi](https://tombi-toml.github.io/tombi/) language server, linter, and
   formatter.
 
