@@ -316,6 +316,13 @@
 
 - Added Makefile support via `languages.make`.
 
+- Add `lsp.presets.emmet-ls` as supported LSP to
+  - `languages.jinja`
+  - `languages.liquid`
+  - `languages.tera`
+  - `languages.twig`
+  - `languages.astro`
+
 - Fix `languages.hcl` init, depending on `comment-nvim` by checking if it is
   enabled. Fixes a crash (#1350).
 
