@@ -242,9 +242,6 @@ in {
       (mkRenamedLspServer "svelte")
       (mkRemovedLspPackage "svelte")
 
-      (mkRenamedLspServer "tailwind")
-      (mkRemovedLspPackage "tailwind")
-
       (mkRemovedLspPackage "terraform")
 
       (mkRenamedLspServer "ts")
@@ -346,6 +343,12 @@ in {
     # 2026-03-19
     [
       (mkRenamedOptionModule ["vim" "treesitter" "foldByDefault"] ["vim" "options" "foldenable"])
+    ]
+
+    # 2026-13-04
+    [
+      (mkRenamedOptionModule ["vim" "lsp" "harper-ls" "enable"] ["vim" "lsp" "presets" "harper" "enable"])
+      (mkRenamedOptionModule ["vim" "lsp" "harper-ls" "settings"] ["vim" "lsp" "servers" "harper" "settings"])
     ]
   ];
 }

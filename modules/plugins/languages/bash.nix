@@ -8,27 +8,15 @@
   inherit (lib.options) mkOption mkEnableOption literalExpression;
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf mkMerge;
-  inherit (lib.types) enum bool;
-  inherit (lib.generators) mkLuaInline;
-  inherit (lib.nvim.types) diagnostics mkGrammarOption deprecatedSingleOrListOf;
+  inherit (lib.types) enum bool listOf;
+  inherit (lib) genAttrs;
+  inherit (lib.nvim.types) diagnostics mkGrammarOption deprecatedSingleOrListOf enumWithRename;
   inherit (lib.nvim.attrsets) mapListToAttrs;
 
   cfg = config.vim.languages.bash;
 
-  defaultServers = ["bash-ls"];
-  servers = {
-    bash-ls = {
-      enable = true;
-      cmd = [(getExe pkgs.bash-language-server) "start"];
-      filetypes = ["bash" "sh"];
-      root_markers = [".git"];
-      settings = {
-        basheIde = {
-          globPattern = mkLuaInline "vim.env.GLOB_PATTERN or '*@(.sh|.inc|.bash|.command)'";
-        };
-      };
-    };
-  };
+  defaultServers = ["bash-language-server"];
+  servers = ["bash-language-server"];
 
   defaultFormat = ["shfmt"];
   formats = {
@@ -65,7 +53,12 @@ in {
           defaultText = literalExpression "config.vim.lsp.enable";
         };
       servers = mkOption {
-        type = deprecatedSingleOrListOf "vim.language.bash.lsp.servers" (enum (attrNames servers));
+        type = listOf (enumWithRename
+          "vim.languages.bash.lsp.servers"
+          servers
+          {
+            bash-ls = "bash-language-server";
+          });
         default = defaultServers;
         description = "Bash LSP server to use";
       };
@@ -107,12 +100,12 @@ in {
     })
 
     (mkIf cfg.lsp.enable {
-      vim.lsp.servers =
-        mapListToAttrs (n: {
-          name = n;
-          value = servers.${n};
-        })
-        cfg.lsp.servers;
+      vim.lsp = {
+        presets = genAttrs cfg.lsp.servers (_: {enable = true;});
+        servers = genAttrs cfg.lsp.servers (_: {
+          filetypes = ["bash" "sh" "zsh"];
+        });
+      };
     })
 
     (mkIf cfg.format.enable {

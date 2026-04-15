@@ -4,26 +4,16 @@
   lib,
   ...
 }: let
-  inherit (builtins) attrNames;
-  inherit (lib.meta) getExe;
+  inherit (lib) genAttrs;
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.options) literalExpression mkEnableOption mkOption;
   inherit (lib.types) enum listOf;
   inherit (lib.nvim.types) mkGrammarOption;
-  inherit (lib.nvim.attrsets) mapListToAttrs;
 
   cfg = config.vim.languages.jinja;
+
   defaultServers = ["jinja-lsp"];
-  servers = {
-    jinja-lsp = {
-      enable = true;
-      cmd = [(getExe pkgs.jinja-lsp)];
-      filetypes = ["jinja"];
-      root_markers = [
-        ".git"
-      ];
-    };
-  };
+  servers = ["jinja-lsp"];
 in {
   options.vim.languages.jinja = {
     enable = mkEnableOption "Jinja template language support";
@@ -48,7 +38,7 @@ in {
         };
       servers = mkOption {
         description = "Jinja LSP server to use";
-        type = listOf (enum (attrNames servers));
+        type = listOf (enum servers);
         default = defaultServers;
       };
     };
@@ -64,12 +54,12 @@ in {
     })
 
     (mkIf cfg.lsp.enable {
-      vim.lsp.servers =
-        mapListToAttrs (n: {
-          name = n;
-          value = servers.${n};
-        })
-        cfg.lsp.servers;
+      vim.lsp = {
+        presets = genAttrs cfg.lsp.servers (_: {enable = true;});
+        servers = genAttrs cfg.lsp.servers (_: {
+          filetypes = ["jinja"];
+        });
+      };
     })
   ]);
 }
