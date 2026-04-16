@@ -18,7 +18,7 @@ in {
     vim.lsp.servers.typescript-go = {
       enable = true;
       cmd = [(getExe pkgs.typescript-go) "--lsp" "--stdio"];
-      root_markers = [".git" "package.json"];
+      root_markers = [".git" "tsconfig.json" "package.json"];
     };
   };
 }
