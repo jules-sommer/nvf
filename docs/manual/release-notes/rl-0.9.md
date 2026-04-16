@@ -63,6 +63,45 @@
 
 - Added `json5` into `languages.json`. Some options where renamed.
 
+- Moved `vim.lsp.harper-ls` to `vim.lsp.presets.haper`.
+
+- Removed `typst_lsp` from `languages.typst.lsp.servers`, because it is
+  deprecated and thus was pulled from nixpkgs.
+  <https://github.com/NixOS/nixpkgs/commit/bf24296bbe2e31ac7147b02ea645922390ca8f4b>
+
+- Renamed `ts_ls` to `typescript-language-server`.
+
+- Renamed `denols` to `deno`.
+
+- Renamed `tsgo` to `typescript-go`.
+
+- Renamed `vala_ls` to `vala-language-server`.
+
+- Renamed `terraformls-tf` and `terraformls-hcl` to `terraform-ls`.
+
+- Renamed `tofuls-tf` and `tofuls-hcl` to `tofu-ls`.
+
+- Renamed `ruby_lsp` to `ruby-lsp`.
+
+- Renamed `r_language_server` to `r-languageserver`.
+
+- Renamed `julials` to `julia-languageserver`.
+
+- Renamed `astro` to `astro-language-server`.
+
+- Renamed `bash-ls` to `bash-language-server`.
+
+- Renamed `jsonls` to `vscode-json-language-server`.
+
+- Renamed `cssls` to `vscode-css-language-server`.
+
+- Renamed `jdtls` to `jdt-language-server`.
+
+- Renamed `elixirls` to `elixir-ls`.
+
+- Removed `languages.tailwind` which only provided an LSP. Use
+  `lsp.presets.tailwindcss-language-server` instead.
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):
@@ -195,6 +234,7 @@
     {command}`:healthcheck` doesn't know that.
   - Remove [which-key.nvim] `<leader>o` `+Notes` description which did not
     actually correspond to any keybinds.
+
 - Allow disabling nvf's vendored keymaps by toggling `vendoredKeymaps.enable`.
 
 [pyrox0](https://github.com/pyrox0):
@@ -209,7 +249,7 @@
 - Added [Pyrefly](https://pyrefly.org/) and [zuban](https://zubanls.com/)
   support to `languages.python`
 
-- Added TOML support via {option}`languages.toml` and the
+- Added TOML support via {option}`vim.languages.toml.enable` and the
   [Tombi](https://tombi-toml.github.io/tombi/) language server, linter, and
   formatter.
 
@@ -228,6 +268,13 @@
 - Added `ruff` and `ty` LSP support for Python under `programs.python`.
 
 [Snoweuph](https://github.com/snoweuph)
+
+- Added `vim.lsp.presets.<name>` to contain LSP configurations. This allows for
+  more flexibility in nvf and reuse of LSPs across languages. Dropped
+  `deprecatedSingleOrListOf` in favor of `listOf` for the affected LSP options.
+
+- Fix `vim.lsp.presets.vala-language-server` to be wrapped correctly with
+  `uncrustify`.
 
 - Fix `tressiter` to allow `null` in grammar options, so they can be filtered
   out.
