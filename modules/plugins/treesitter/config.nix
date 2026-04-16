@@ -4,8 +4,10 @@
   ...
 }: let
   inherit (lib.modules) mkIf;
+  inherit (lib.strings) optionalString;
   inherit (lib.lists) optionals;
   inherit (lib.nvim.dag) entryAfter;
+  inherit (lib.nvim.lua) toLuaObject;
 
   cfg = config.vim.treesitter;
 in {
@@ -39,8 +41,14 @@ in {
           -- Enable treesitter highlighting for all filetypes
           vim.api.nvim_create_autocmd("FileType", {
             group = "nvf_treesitter",
-            pattern = "*",
-            callback = function()
+            pattern = ${toLuaObject cfg.indent.pattern},
+            callback = function(args)
+          ${optionalString (builtins.length cfg.indent.excludes > 0) ''
+            local ft = vim.bo[args.buf].filetype
+            if vim.tbl_contains(${toLuaObject cfg.indent.excludes}, ft) then
+              return
+            end
+          ''}
               vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             end,
           })
