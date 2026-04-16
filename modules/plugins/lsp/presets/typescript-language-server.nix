@@ -19,7 +19,7 @@ in {
     vim.lsp.servers.typescript-language-server = {
       enable = true;
       cmd = [(getExe pkgs.typescript-language-server) "--stdio"];
-      root_markers = [".git" "package.json"];
+      root_markers = [".git" "tsconfig.json" "package.json"];
       init_options = {hostInfo = "neovim";};
       handlers = {
         # handle rename request for certain code actions like extracting functions / types

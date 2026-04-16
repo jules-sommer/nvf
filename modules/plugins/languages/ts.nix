@@ -174,7 +174,6 @@ in {
       vim.lsp = {
         presets = genAttrs cfg.lsp.servers (_: {enable = true;});
         servers = genAttrs cfg.lsp.servers (_: {
-          root_markers = ["tsconfig.json"];
           filetypes = [
             "typescript"
             # TODO: move to a React module
