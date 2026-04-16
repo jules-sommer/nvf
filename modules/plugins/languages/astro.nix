@@ -17,7 +17,7 @@
   cfg = config.vim.languages.astro;
 
   defaultServers = ["astro-language-server"];
-  servers = ["astro-language-server"];
+  servers = ["astro-language-server" "emmet-ls"];
 
   defaultFormat = ["prettier"];
   formats = let

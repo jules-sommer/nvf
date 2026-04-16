@@ -13,7 +13,7 @@
   cfg = config.vim.languages.jinja;
 
   defaultServers = ["jinja-lsp"];
-  servers = ["jinja-lsp"];
+  servers = ["jinja-lsp" "emmet-ls"];
 in {
   options.vim.languages.jinja = {
     enable = mkEnableOption "Jinja template language support";

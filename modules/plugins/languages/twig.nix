@@ -16,7 +16,7 @@
   cfg = config.vim.languages.twig;
 
   defaultServers = ["twig-language-server"];
-  servers = ["twig-language-server"];
+  servers = ["twig-language-server" "emmet-ls"];
 
   defaultFormat = ["djlint"];
   formats = {
