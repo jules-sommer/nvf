@@ -5,17 +5,20 @@
   ...
 }: let
   inherit (builtins) concatMap;
+  inherit (builtins) elem;
   inherit (lib) genAttrs;
+  inherit (lib.generators) mkLuaInline;
   inherit (lib.options) mkEnableOption mkOption literalExpression;
   inherit (lib.types) enum listOf;
   inherit (lib.modules) mkIf mkMerge;
-  inherit (lib.nvim.types) mkGrammarOption mkPluginSetupOption;
+  inherit (lib.nvim.types) mkGrammarOption mkPluginSetupOption enumWithRename luaInline;
+  inherit (lib.nvim.lua) toLuaObject;
+  inherit (lib.nvim.dag) entryAnywhere;
 
   extraServerPlugins = {
     omnisharp = ["omnisharp-extended-lsp-nvim"];
     csharp_ls = ["csharpls-extended-lsp-nvim"];
-    roslyn_ls = [];
-    roslyn = ["roslyn-nvim"];
+    roslyn-ls = [];
   };
   defaultServers = ["csharp-ls"];
   servers = ["csharp-ls" "omnisharp" "roslyn-ls"];
@@ -44,13 +47,56 @@ in {
       extensions = {
         roslyn-nvim = {
           enable = mkEnableOption ''
-            Roslyn LSP plugin for neovim
+            Roslyn LSP plugin for Neovim that adds Razor support and works with multiple solutions
 
             ::: {.note}
             This feature only works for `roslyn-ls`.
             :::
           '';
-          setupOpts = mkPluginSetupOption "roslyn-nvim" {};
+          setupOpts = mkPluginSetupOption "roslyn-nvim" {
+            filewatching = mkOption {
+              description = ''
+                "auto" | "roslyn" | "off"
+
+                 - "auto": Does nothing for filewatching, leaving everything as default
+                 - "roslyn": Turns off neovim filewatching which will make roslyn do the filewatching
+                 - "off": Hack to turn off all filewatching.
+
+                ::: {.tip}
+                Set to "off" if you notice performance issues
+                :::
+              '';
+              type = enum ["auto" "roslyn" "off"];
+              default = "auto";
+            };
+            extensions.razor = {
+              enabled =
+                (mkEnableOption "Additional roslyn extensions (for example Roslynator/Razor)")
+                // {default = true;};
+              config = mkOption {
+                description = "Configuration for the additional roslyn extensions";
+                type = luaInline;
+                default = let
+                  pkg = pkgs.vscode-extensions.ms-dotnettools.csharp;
+                  pluginRoot = "${pkg}/share/vscode/extensions/ms-dotnettools.csharp";
+                  razorExtension = "${pluginRoot}/.razorExtension/Microsoft.VisualStudioCode.RazorExtension.dll";
+                  razorSourceGenerator = "${pluginRoot}/.razorExtension/Microsoft.CodeAnalysis.Razor.Compiler.dll";
+                  razorDesignTimePath = "${pluginRoot}/.razorExtension/Targets/Microsoft.NET.Sdk.Razor.DesignTime.targets";
+                in
+                  mkLuaInline ''
+                    function()
+                      return {
+                        path = '${razorExtension}',
+                        args = {
+                          '--razorSourceGenerator=${razorSourceGenerator}',
+                          '--razorDesignTimePath=${razorDesignTimePath}',
+                        },
+                      }
+                    end
+                  '';
+              };
+            };
+          };
         };
       };
 
@@ -74,7 +120,11 @@ in {
           };
         servers = mkOption {
           description = "C# LSP server to use";
-          type = listOf (enum servers);
+          type = listOf (enumWithRename
+            "vim.languages.csharp.lsp.servers"
+            servers {
+              roslyn_ls = "roslyn-ls";
+            });
           default = defaultServers;
         };
       };
@@ -111,12 +161,15 @@ in {
         };
       };
     })
-    (mkIf cfg.extensions.roslyn-nvim.enable {
-      vim = mkMerge [
-        {
-          startPlugins = ["roslyn-nvim"];
-        }
-      ];
+    (mkIf (cfg.lsp.enable
+      && cfg.extensions.roslyn-nvim.enable
+      && (elem "roslyn-ls" cfg.lsp.servers)) {
+      vim = {
+        startPlugins = ["roslyn-nvim"];
+        pluginRC.roslyn-nvim = entryAnywhere "require('roslyn').setup(${toLuaObject cfg.extensions.roslyn-nvim.setupOpts})";
+        lsp.servers.roslyn-ls.enable = false;
+        extraPackages = with pkgs; [roslyn-ls];
+      };
     })
   ]);
 }
