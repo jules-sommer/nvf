@@ -491,7 +491,7 @@ https://github.com/gorbit99/codewindow.nvim
 
 [CaueAnjos](https://github.com/caueanjos)
 
-- Add razor support for `roslyn_ls` and `csharp_ls`
+- Added razor support for `roslyn_ls` and `csharp_ls`
 
 [mputz86](https://github.com/mputz86)
 
