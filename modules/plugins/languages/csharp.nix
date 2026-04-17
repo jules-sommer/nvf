@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  options,
   ...
 }: let
   inherit (builtins) concatMap;
@@ -9,16 +10,18 @@
   inherit (lib) genAttrs;
   inherit (lib.generators) mkLuaInline;
   inherit (lib.options) mkEnableOption mkOption literalExpression;
+  inherit (config.vim.lib) mkMappingOption;
   inherit (lib.types) enum listOf;
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.nvim.types) mkGrammarOption mkPluginSetupOption enumWithRename luaInline;
   inherit (lib.nvim.lua) toLuaObject;
   inherit (lib.nvim.dag) entryAnywhere;
+  inherit (lib.nvim.binds) addDescriptionsToMappings;
 
   extraServerPlugins = {
-    omnisharp = ["omnisharp-extended-lsp-nvim"];
     csharp_ls = ["csharpls-extended-lsp-nvim"];
     roslyn-ls = [];
+    omnisharp = [];
   };
   defaultServers = ["csharp-ls"];
   servers = ["csharp-ls" "omnisharp" "roslyn-ls"];
@@ -98,6 +101,23 @@ in {
             };
           };
         };
+        omnisharp-extended-lsp-nvim = {
+          enable = mkEnableOption ''
+            Extended 'textDocument/definition' handler for OmniSharp Neovim LSP
+
+            ::: {.note}
+            This feature only works for `omnisharp`.
+            :::
+          '';
+          mappings = let
+            inherit (config.vim.lsp) mappings;
+          in {
+            goToDefinition = mkMappingOption "Go to definition [omnisharp-extended-lsp-nvim]" mappings.goToDefinition;
+            goToType = mkMappingOption "Go to type [omnisharp-extended-lsp-nvim]" mappings.goToType;
+            listReferences = mkMappingOption "List references [omnisharp-extended-lsp-nvim]" mappings.listReferences;
+            listImplementations = mkMappingOption "List implementations [omnisharp-extended-lsp-nvim]" mappings.listImplementations;
+          };
+        };
       };
 
       treesitter = {
@@ -139,20 +159,15 @@ in {
 
     (mkIf cfg.lsp.enable {
       vim = {
-        startPlugins = concatMap (server: extraServerPlugins.${server}) cfg.lsp.servers;
-        luaConfigRC.razorFileTypes =
-          /*
-          lua
-          */
-          ''
-            -- Set unknown file types!
-            vim.filetype.add {
-              extension = {
-                razor = "razor",
-                cshtml = "razor",
-              },
-            }
-          '';
+        luaConfigRC.razorFileTypes = ''
+          -- Set unknown file types!
+          vim.filetype.add {
+            extension = {
+              razor = "razor",
+              cshtml = "razor",
+            },
+          }
+        '';
         lsp = {
           presets = genAttrs cfg.lsp.servers (_: {enable = true;});
           servers = genAttrs cfg.lsp.servers (_: {
@@ -169,6 +184,30 @@ in {
         pluginRC.roslyn-nvim = entryAnywhere "require('roslyn').setup(${toLuaObject cfg.extensions.roslyn-nvim.setupOpts})";
         lsp.servers.roslyn-ls.enable = false;
         extraPackages = with pkgs; [roslyn-ls];
+      };
+    })
+    (mkIf (cfg.lsp.enable
+      && cfg.extensions.omnisharp-extended-lsp-nvim.enable
+      && (elem "omnisharp" cfg.lsp.servers)) {
+      vim = {
+        startPlugins = ["omnisharp-extended-lsp-nvim"];
+        lsp.servers.omnisharp.on_attach = let
+          mappingDefinitions = options.vim.languages.csharp.extensions.omnisharp-extended-lsp-nvim.mappings;
+          mappings = addDescriptionsToMappings cfg.extensions.omnisharp-extended-lsp-nvim.mappings mappingDefinitions;
+          mkBinding = binding: action:
+            if binding.value != null
+            then "vim.keymap.set('n', ${toLuaObject binding.value}, ${action}, {buffer=bufnr, noremap=true, silent=true, desc=${toLuaObject binding.description}})"
+            else "";
+        in
+          mkLuaInline
+          ''
+            function(client, bufnr)
+              ${mkBinding mappings.goToDefinition "require('omnisharp_extended').lsp_definition"}
+              ${mkBinding mappings.goToType "require('omnisharp_extended').lsp_type_definition"}
+              ${mkBinding mappings.listReferences "require('omnisharp_extended').lsp_references"}
+              ${mkBinding mappings.listImplementations "require('omnisharp_extended').lsp_implementation"}
+            end
+          '';
       };
     })
   ]);

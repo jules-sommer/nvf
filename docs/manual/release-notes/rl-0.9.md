@@ -111,6 +111,7 @@
 [CaueAnjos](https://github.com/caueanjos)
 
 - Renamed `roslyn_ls` to `roslyn-ls`
+- Turned `omnisharp-extended-lsp-nvim` into an extension disabled by default
 
 ## Changelog {#sec-release-0-9-changelog}
 
