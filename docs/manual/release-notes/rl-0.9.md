@@ -290,6 +290,8 @@
 - Added {option}`vim.lsp.presets.angular-language-server.enable` for Angular
   Template support.
 
+- Added {option}`vim.lsp.presets.vtsls.enable` for Vue TypeScript support.
+
 - Fix `vim.lsp.presets.vala-language-server` to be wrapped correctly with
   `uncrustify`.
 
