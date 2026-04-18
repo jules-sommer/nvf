@@ -110,7 +110,7 @@ in {
         vim.lsp = {
           presets = genAttrs cfg.lsp.servers (_: {enable = true;});
           servers = genAttrs cfg.lsp.servers (_: {
-            filetypes = ["lsp"];
+            filetypes = ["lua"];
           });
         };
       })
