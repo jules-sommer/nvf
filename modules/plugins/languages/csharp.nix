@@ -5,7 +5,6 @@
   options,
   ...
 }: let
-  inherit (builtins) concatMap;
   inherit (builtins) elem;
   inherit (lib) genAttrs;
   inherit (lib.generators) mkLuaInline;
@@ -18,13 +17,8 @@
   inherit (lib.nvim.dag) entryAnywhere;
   inherit (lib.nvim.binds) addDescriptionsToMappings;
 
-  extraServerPlugins = {
-    csharp_ls = ["csharpls-extended-lsp-nvim"];
-    roslyn-ls = [];
-    omnisharp = [];
-  };
-  defaultServers = ["csharp-ls"];
-  servers = ["csharp-ls" "omnisharp" "roslyn-ls"];
+  defaultServers = ["csharp_ls"];
+  servers = ["csharp_ls" "omnisharp" "roslyn-ls"];
 
   cfg = config.vim.languages.csharp;
 in {
@@ -35,7 +29,7 @@ in {
 
         ::: {.note}
         This feature will not work if the .NET SDK is not installed.
-        Both `roslyn-ls` (with `roslyn-nvim`) and `csharp-ls` require the .NET SDK to function properly with Razor.
+        Both `roslyn-ls` (with `roslyn-nvim`) and `csharp_ls` require the .NET SDK to function properly with Razor.
         Ensure that the .NET SDK is installed.
 
         Check for version compatibility for optimal performance.
@@ -43,7 +37,7 @@ in {
 
         ::: {.warning}
         At the moment, only `roslyn-ls`(with roslyn-nvim) provides full Razor support.
-        `csharp-ls` is limited to `.cshtml` files.
+        `csharp_ls` is limited to `.cshtml` files.
         :::
       '';
 
@@ -117,6 +111,15 @@ in {
             listReferences = mkMappingOption "List references [omnisharp-extended-lsp-nvim]" mappings.listReferences;
             listImplementations = mkMappingOption "List implementations [omnisharp-extended-lsp-nvim]" mappings.listImplementations;
           };
+        };
+        csharpls-extended-lsp-nvim = {
+          enable = mkEnableOption ''
+            Extended 'textDocument/definition' handler for csharp_ls Neovim LSP
+
+            ::: {.note}
+            This feature only works for `csharp_ls`.
+            :::
+          '';
         };
       };
 
@@ -208,6 +211,18 @@ in {
               ${mkBinding mappings.listImplementations "require('omnisharp_extended').lsp_implementation"}
             end
           '';
+      };
+    })
+    (mkIf (cfg.lsp.enable
+      && cfg.extensions.csharpls-extended-lsp-nvim.enable
+      && (elem "csharp_ls" cfg.lsp.servers)) {
+      vim = {
+        startPlugins = ["csharpls-extended-lsp-nvim"];
+        lsp.servers.csharp_ls.on_attach = mkLuaInline ''
+          function(client, bufnr)
+            require('csharpls_extended').buf_read_cmd_bind()
+          end
+        '';
       };
     })
   ]);
