@@ -12,10 +12,10 @@
   inherit (lib.types) enum bool listOf;
   inherit (lib.nvim.attrsets) mapListToAttrs;
   inherit (lib.nvim.lua) toLuaObject;
-  inherit (lib.nvim.types) mkGrammarOption diagnostics mkPluginSetupOption deprecatedSingleOrListOf enumWithRename;
+  inherit (lib.nvim.types) mkGrammarOption diagnostics mkPluginSetupOption enumWithRename;
   inherit (lib.nvim.dag) entryAnywhere;
 
-  cfg = config.vim.languages.ts;
+  cfg = config.vim.languages.typescript;
 
   defaultServers = ["typescript-language-server"];
   servers = ["typescript-language-server" "deno" "typescript-go"];
@@ -74,8 +74,7 @@
     };
   };
 in {
-  _file = ./ts.nix;
-  options.vim.languages.ts = {
+  options.vim.languages.typescript = {
     enable = mkEnableOption "Typescript/Javascript language support";
 
     treesitter = {
@@ -122,7 +121,7 @@ in {
 
       type = mkOption {
         description = "Typescript/Javascript formatter to use";
-        type = deprecatedSingleOrListOf "vim.language.ts.format.type" (enum (attrNames formats));
+        type = listOf (enum (attrNames formats));
         default = defaultFormat;
       };
     };
