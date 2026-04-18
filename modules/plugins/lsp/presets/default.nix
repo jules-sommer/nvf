@@ -69,6 +69,7 @@
     ./vscode-css-language-server.nix
     ./vscode-json-language-server.nix
     ./vtsls.nix
+    ./vue-language-server.nix
     ./wgsl-analyzer.nix
     ./yaml-language-server.nix
     ./zls.nix
