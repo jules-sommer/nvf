@@ -1877,10 +1877,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "dae2323054b9ff3a1f6300847dee29c00cdabdde",
-      "url": "https://github.com/code-biscuits/nvim-biscuits/archive/dae2323054b9ff3a1f6300847dee29c00cdabdde.tar.gz",
-      "hash": "sha256-r0SEI/5Izv9GLrKFC8mmd6DuETdpJekswxTpB4WcBkE=",
-      "frozen": true
+      "revision": "d93dcdee3a3dfd5101785447658e744f153957db",
+      "url": "https://github.com/code-biscuits/nvim-biscuits/archive/d93dcdee3a3dfd5101785447658e744f153957db.tar.gz",
+      "hash": "sha256-UKolssxC+cfQ9x3Mum/mKPVY8jJBs6+DtQgvvufLFAk="
     },
     "nvim-cmp": {
       "type": "Git",
