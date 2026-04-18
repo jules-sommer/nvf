@@ -279,6 +279,9 @@
 - Fix `tressiter` to allow `null` in grammar options, so they can be filtered
   out.
 
+- Fix {option}`vim.utility.nvim-biscuits.enable` by upgrading, to fix
+  tree-sitter incompatibilities.
+
 - Added [Selenen](https://github.com/kampfkarren/selene) for more diagnostics in
   `languages.lua`.
 
