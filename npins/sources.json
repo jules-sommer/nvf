@@ -2889,20 +2889,17 @@
       "hash": "sha256-W5N/Dqxf9hSXEEJsrEkXInFwBXNBJe9Dzx9TVS12mPk="
     },
     "vim-wakatime": {
-      "type": "GitRelease",
+      "type": "Git",
       "repository": {
         "type": "GitHub",
         "owner": "wakatime",
         "repo": "vim-wakatime"
       },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
+      "branch": "master",
       "submodules": false,
-      "version": "12.0.0",
-      "revision": "cb7ba055330245b3a9d29f8bb4b82aeb2d52e580",
-      "url": "https://api.github.com/repos/wakatime/vim-wakatime/tarball/refs/tags/12.0.0",
-      "hash": "sha256-3D+07D3NKndFeTSNMJiG1HJl5Cv5/GjWJUU+6FOSI/k="
+      "revision": "7de455c9a8883b7cfa22e01f50bb6e01ced7293d",
+      "url": "https://github.com/wakatime/vim-wakatime/archive/7de455c9a8883b7cfa22e01f50bb6e01ced7293d.tar.gz",
+      "hash": "sha256-IEqz/4e6rKfPGkfwscijeI0+xY4cvEqjrEZ3b4W6Mpg="
     },
     "which-key-nvim": {
       "type": "Git",
