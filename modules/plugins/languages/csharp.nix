@@ -5,8 +5,8 @@
   options,
   ...
 }: let
-  inherit (builtins) elem;
-  inherit (lib) genAttrs;
+  inherit (builtins) elem filter attrNames;
+  inherit (lib) genAttrs getExe;
   inherit (lib.generators) mkLuaInline;
   inherit (lib.options) mkEnableOption mkOption literalExpression;
   inherit (config.vim.lib) mkMappingOption;
@@ -16,9 +16,25 @@
   inherit (lib.nvim.lua) toLuaObject;
   inherit (lib.nvim.dag) entryAnywhere;
   inherit (lib.nvim.binds) addDescriptionsToMappings;
+  inherit (lib.nvim.attrsets) mapListToAttrs;
 
   defaultServers = ["csharp_ls"];
   servers = ["csharp_ls" "omnisharp" "roslyn-ls"];
+
+  defaultFormat = [];
+  formats = {
+    csharpier = {
+      command = getExe pkgs.csharpier;
+    };
+  };
+
+  # Verbose names for clarity.
+  shouldEnableExclusiveLspExtension = extension: lsp: cfg.lsp.enable && cfg.extensions.${extension}.enable && (elem lsp cfg.lsp.servers);
+  mkAlertForMisuseOfExclusiveLspExtension = extension: lsp: (mkIf (cfg.lsp.enable
+    && cfg.extensions.${extension}.enable) {
+    assertion = elem lsp cfg.lsp.servers;
+    message = "${extension} requires ${lsp} to be listed in vim.languages.csharp.lsp.servers.";
+  });
 
   cfg = config.vim.languages.csharp;
 in {
@@ -151,6 +167,21 @@ in {
           default = defaultServers;
         };
       };
+
+      format = {
+        enable =
+          mkEnableOption "C# formatting"
+          // {
+            default = config.vim.languages.enableFormat;
+            defaultText = literalExpression "config.vim.languages.enableFormat";
+          };
+
+        type = mkOption {
+          description = "C# formatter to use";
+          type = listOf (enum (attrNames formats));
+          default = defaultFormat;
+        };
+      };
     };
   };
 
@@ -179,9 +210,31 @@ in {
         };
       };
     })
-    (mkIf (cfg.lsp.enable
-      && cfg.extensions.roslyn-nvim.enable
-      && (elem "roslyn-ls" cfg.lsp.servers)) {
+
+    (mkIf cfg.format.enable {
+      vim.formatter.conform-nvim = {
+        enable = true;
+        setupOpts = {
+          formatters_by_ft.cs = cfg.format.type;
+          formatters =
+            mapListToAttrs (name: {
+              inherit name;
+              value = formats.${name};
+            })
+            (filter (name: name != "lsp") cfg.format.type);
+        };
+      };
+    })
+
+    {
+      assertions = [
+        (mkAlertForMisuseOfExclusiveLspExtension "roslyn-nvim" "roslyn-ls")
+        (mkAlertForMisuseOfExclusiveLspExtension "csharpls-extended-lsp-nvim" "csharp_ls")
+        (mkAlertForMisuseOfExclusiveLspExtension "omnisharp-extended-lsp-nvim" "omnisharp")
+      ];
+    }
+
+    (mkIf (shouldEnableExclusiveLspExtension "roslyn-nvim" "roslyn-ls") {
       vim = {
         startPlugins = ["roslyn-nvim"];
         pluginRC.roslyn-nvim = entryAnywhere "require('roslyn').setup(${toLuaObject cfg.extensions.roslyn-nvim.setupOpts})";
@@ -189,9 +242,7 @@ in {
         extraPackages = with pkgs; [roslyn-ls];
       };
     })
-    (mkIf (cfg.lsp.enable
-      && cfg.extensions.omnisharp-extended-lsp-nvim.enable
-      && (elem "omnisharp" cfg.lsp.servers)) {
+    (mkIf (shouldEnableExclusiveLspExtension "omnisharp-extended-lsp-nvim" "omnisharp") {
       vim = {
         startPlugins = ["omnisharp-extended-lsp-nvim"];
         lsp.servers.omnisharp.on_attach = let
@@ -213,9 +264,7 @@ in {
           '';
       };
     })
-    (mkIf (cfg.lsp.enable
-      && cfg.extensions.csharpls-extended-lsp-nvim.enable
-      && (elem "csharp_ls" cfg.lsp.servers)) {
+    (mkIf (shouldEnableExclusiveLspExtension "csharpls-extended-lsp-nvim" "csharp_ls") {
       vim = {
         startPlugins = ["csharpls-extended-lsp-nvim"];
         lsp.servers.csharp_ls.on_attach = mkLuaInline ''

@@ -494,6 +494,7 @@ https://github.com/gorbit99/codewindow.nvim
 [CaueAnjos](https://github.com/caueanjos)
 
 - Added razor support for `roslyn_ls` and `csharp_ls`
+- Added `csharpier` formatter to csharp language
 
 [mputz86](https://github.com/mputz86)
 
