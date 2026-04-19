@@ -7,7 +7,7 @@
   inherit (lib) genAttrs;
   inherit (lib.options) mkEnableOption literalExpression mkOption;
   inherit (lib.modules) mkIf mkMerge;
-  inherit (lib.types) enum listOf;
+  inherit (lib.types) enum listOf str;
   inherit (lib.nvim.types) mkGrammarOption;
 
   cfg = config.vim.languages.tera;
@@ -26,6 +26,11 @@ in {
           defaultText = literalExpression "config.vim.languages.enableTreesitter";
         };
       package = mkGrammarOption pkgs "tera";
+      injection = mkOption {
+        type = str;
+        default = "html";
+        description = "Treesitter language to inject in Tera templates";
+      };
     };
 
     lsp = {
@@ -45,8 +50,24 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     (mkIf cfg.treesitter.enable {
-      vim.treesitter.enable = true;
-      vim.treesitter.grammars = [cfg.treesitter.package];
+      vim.treesitter = {
+        enable = true;
+        grammars = [cfg.treesitter.package];
+        queries = [
+          {
+            type = "injections";
+            filetypes = ["tera"];
+            content = ''
+              ;; extends
+
+              ((content) @injection.content
+                (#set! injection.language "${cfg.treesitter.injection}")
+                (#set! injection.combined)
+              )
+            '';
+          }
+        ];
+      };
     })
 
     (mkIf cfg.lsp.enable {
