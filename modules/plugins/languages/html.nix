@@ -18,7 +18,7 @@
   cfg = config.vim.languages.html;
 
   defaultServers = ["superhtml"];
-  servers = ["superhtml" "emmet-ls"];
+  servers = ["superhtml" "emmet-ls" "angular-language-server"];
 
   defaultFormat = ["superhtml"];
   formats = {
