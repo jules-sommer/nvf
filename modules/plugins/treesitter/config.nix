@@ -1,9 +1,10 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
-  inherit (lib.modules) mkIf;
+  inherit (lib) mkIf foldl' mapAttrsToList;
   inherit (lib.strings) optionalString;
   inherit (lib.lists) optionals;
   inherit (lib.nvim.dag) entryAfter;
@@ -66,6 +67,40 @@ in {
           })
         ''}
       '';
+
+      additionalRuntimePaths = mkIf (cfg.queries != []) [
+        (let
+          grouped =
+            foldl'
+            (
+              acc: query:
+                foldl'
+                (
+                  inner: filetype: let
+                    path = "queries/${filetype}/${query.type}.scm";
+                    prev = inner.${path} or "";
+                  in
+                    inner
+                    // {
+                      ${path} = prev + query.content;
+                    }
+                )
+                acc
+                query.filetypes
+            )
+            {}
+            cfg.queries;
+
+          files =
+            mapAttrsToList
+            (path: content: {
+              name = path;
+              path = pkgs.writeText path content;
+            })
+            grouped;
+        in
+          pkgs.linkFarm "treesitter-queries" files)
+      ];
     };
   };
 }

@@ -4,7 +4,25 @@
   ...
 }: let
   inherit (lib.options) mkOption mkEnableOption literalExpression;
-  inherit (lib.types) listOf nullOr package bool str oneOf;
+  inherit (lib.types) listOf nullOr package bool str lines enum submodule oneOf;
+
+  queriesType = submodule {
+    options = {
+      type = mkOption {
+        type = enum ["injections" "highlights" "folds" "locals" "indents"];
+        description = "The kind of query to register.";
+      };
+      filetypes = mkOption {
+        type = listOf str;
+        default = [];
+        description = "The filetypes for which the query should be registered.";
+      };
+      content = mkOption {
+        type = lines;
+        description = "The queries scm script.";
+      };
+    };
+  };
 in {
   options.vim.treesitter = {
     enable = mkEnableOption "treesitter, also enabled automatically through language options";
@@ -87,5 +105,11 @@ in {
     };
 
     highlight = {enable = mkEnableOption "highlighting with treesitter" // {default = true;};};
+
+    queries = mkOption {
+      type = listOf queriesType;
+      default = [];
+      description = "A list of Neovim treesitter queries to be registered.";
+    };
   };
 }

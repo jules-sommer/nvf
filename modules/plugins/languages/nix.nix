@@ -128,8 +128,74 @@ in {
     }
 
     (mkIf cfg.treesitter.enable {
-      vim.treesitter.enable = true;
-      vim.treesitter.grammars = [cfg.treesitter.package];
+      vim.treesitter = {
+        enable = true;
+        grammars = [cfg.treesitter.package];
+        queries = [
+          # vim.treesitter.queries.*.content
+          {
+            type = "injections";
+            filetypes = ["nix"];
+            content = ''
+              ;; extends
+              (
+                (binding
+                  attrpath: (attrpath
+                    (identifier) @_a
+                    (identifier) @_b
+                    (identifier)? @_c)
+                  (#eq? @_a "vim")
+                  (#any-of? @_b "treesitter")
+                  (#any-of? @_c "queries")
+
+                  expression: (attrset_expression
+                    (binding_set
+                      (binding
+                        attrpath: (attrpath
+                          (identifier) @_queries)
+                        (#eq? @_queries "queries")
+
+                        expression: (list_expression
+                          (attrset_expression
+                            (binding_set
+                              (binding
+                                attrpath: (attrpath
+                                  (identifier) @_field)
+                                (#eq? @_field "content")
+
+                                expression: [
+                                  (string_expression
+                                    (string_fragment) @injection.content)
+                                  (indented_string_expression
+                                    (string_fragment) @injection.content)
+                                ]
+
+                                (#set! injection.language "query")
+                                (#set! injection.combined)))))))))
+              )
+            '';
+          }
+          # mkLuaInline = lua
+          {
+            type = "injections";
+            filetypes = ["nix"];
+            content = ''
+              ;; extends
+
+              ((apply_expression
+                function: (variable_expression
+                  name: (identifier) @_func
+                  (#eq? @_func "mkLuaInline"))
+
+                argument: (indented_string_expression
+                  (string_fragment) @injection.content)
+
+                (#set! injection.language "lua")
+                (#set! injection.combined)))
+            '';
+          }
+        ];
+      };
     })
 
     (mkIf cfg.lsp.enable {
