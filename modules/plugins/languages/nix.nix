@@ -138,44 +138,43 @@ in {
             filetypes = ["nix"];
             content = ''
               ;; extends
-              (
-                (binding
-                  attrpath: (attrpath
-                    (identifier) @_a
-                    (identifier) @_b
-                    (identifier)? @_c)
-                  (#eq? @_a "vim")
-                  (#any-of? @_b "treesitter")
-                  (#any-of? @_c "queries")
 
-                  expression: (attrset_expression
-                    (binding_set
-                      (binding
-                        attrpath: (attrpath
-                          (identifier) @_queries)
-                        (#eq? @_queries "queries")
+              ((binding
+                attrpath: (attrpath
+                  (identifier) @_a
+                  (identifier) @_b
+                  (identifier)? @_c)
+                (#eq? @_a "vim")
+                (#any-of? @_b "treesitter")
+                (#any-of? @_c "queries")
 
-                        expression: (list_expression
-                          (attrset_expression
-                            (binding_set
-                              (binding
-                                attrpath: (attrpath
-                                  (identifier) @_field)
-                                (#eq? @_field "content")
+                expression: (attrset_expression
+                  (binding_set
+                    (binding
+                      attrpath: (attrpath
+                        (identifier) @_queries)
+                      (#eq? @_queries "queries")
 
-                                expression: [
-                                  (string_expression
-                                    (string_fragment) @injection.content)
-                                  (indented_string_expression
-                                    (string_fragment) @injection.content)
-                                ]
+                      expression: (list_expression
+                        (attrset_expression
+                          (binding_set
+                            (binding
+                              attrpath: (attrpath
+                                (identifier) @_field)
+                              (#eq? @_field "content")
 
-                                (#set! injection.language "query")
-                                (#set! injection.combined)))))))))
-              )
+                              expression: [
+                                (string_expression
+                                  (string_fragment) @injection.content)
+                                (indented_string_expression
+                                  (string_fragment) @injection.content)
+                              ]
+
+                              (#set! injection.language "query")
+                              (#set! injection.combined))))))))))
             '';
           }
-          # mkLuaInline = lua
+          # mkLuaInline, entryAnywhere, entryBefore, entryAfter = lua
           {
             type = "injections";
             filetypes = ["nix"];
@@ -185,13 +184,22 @@ in {
               ((apply_expression
                 function: (variable_expression
                   name: (identifier) @_func
-                  (#eq? @_func "mkLuaInline"))
-
+                  (#any-of? @_func "mkLuaInline" "entryAnywhere"))
                 argument: (indented_string_expression
-                  (string_fragment) @injection.content)
+                  (string_fragment) @injection.content))
+               (#set! injection.language "lua")
+               (#set! injection.combined))
 
-                (#set! injection.language "lua")
-                (#set! injection.combined)))
+              ((apply_expression
+                function: (apply_expression
+                  function: (variable_expression
+                    name: (identifier) @_func
+                    (#any-of? @_func "entryBefore" "entryAfter"))
+                  argument: (_))
+                argument: (indented_string_expression
+                  (string_fragment) @injection.content))
+               (#set! injection.language "lua")
+               (#set! injection.combined))
             '';
           }
         ];

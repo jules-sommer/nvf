@@ -274,7 +274,7 @@
 - Added {option}`vim.treesitter.queries` to support adding custom queries.
 
 - Added injections for `vim.treesitter.queries.*.content` as `query` and
-  `mkLualine ""` as `lua`.
+  `mkLualine`, `entryAnywhere`, `entryBefore`, `entryAfter` as `lua`.
 
 - Added `vim.lsp.presets.<name>` to contain LSP configurations. This allows for
   more flexibility in nvf and reuse of LSPs across languages. Dropped
