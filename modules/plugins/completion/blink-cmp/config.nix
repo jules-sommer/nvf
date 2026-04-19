@@ -54,13 +54,10 @@ in {
         # event = ["InsertEnter" "CmdlineEnter"];
 
         after =
-          # lua
-          ''
-            ${optionalString (config.vim.lazy.enable && cmpCfg.enable)
-              (concatStringsSep "\n" (map
-                (package: "require('lz.n').trigger_load(${toLuaObject (getPluginName package)})")
-                cmpCfg.sourcePlugins))}
-          '';
+          optionalString (config.vim.lazy.enable && cmpCfg.enable)
+          (concatStringsSep "\n" (map
+            (package: "require('lz.n').trigger_load(${toLuaObject (getPluginName package)})")
+            cmpCfg.sourcePlugins));
       };
     };
 
@@ -111,18 +108,16 @@ in {
             next = [
               "select_next"
               "snippet_forward"
-              (mkLuaInline
-                # lua
-                ''
-                  function(cmp)
-                    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                    has_words_before = col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+              (mkLuaInline ''
+                function(cmp)
+                  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                  has_words_before = col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 
-                    if has_words_before then
-                      return cmp.show()
-                    end
+                  if has_words_before then
+                    return cmp.show()
                   end
-                '')
+                end
+              '')
               "fallback"
             ];
             previous = [
