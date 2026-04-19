@@ -48,6 +48,8 @@ in {
       enable = true;
       cmd = [(getExe pkgs.harper) "--stdio"];
       root_markers = [".git" ".harper-dictionary.txt"];
+      # Make Harper shut up in the logs, that its key is required, when nothing is configured.
+      settings.harper-ls = {};
       inherit filetypes;
     };
   };
