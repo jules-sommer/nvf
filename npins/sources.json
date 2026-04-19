@@ -2888,6 +2888,22 @@
       "url": "https://github.com/mhinz/vim-startify/archive/4e089dffdad46f3f5593f34362d530e8fe823dcf.tar.gz",
       "hash": "sha256-W5N/Dqxf9hSXEEJsrEkXInFwBXNBJe9Dzx9TVS12mPk="
     },
+    "vim-wakatime": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "wakatime",
+        "repo": "vim-wakatime"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "12.0.0",
+      "revision": "cb7ba055330245b3a9d29f8bb4b82aeb2d52e580",
+      "url": "https://api.github.com/repos/wakatime/vim-wakatime/tarball/refs/tags/12.0.0",
+      "hash": "sha256-3D+07D3NKndFeTSNMJiG1HJl5Cv5/GjWJUU+6FOSI/k="
+    },
     "which-key-nvim": {
       "type": "Git",
       "repository": {

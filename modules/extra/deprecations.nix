@@ -358,5 +358,10 @@ in {
     [
       (mkRenamedOptionModule ["vim" "languages" "ts"] ["vim" "languages" "typescript"])
     ]
+
+    # 2026-04-19
+    [
+      (mkRenamedOptionModule ["vim" "utility" "vim-wakatime" "cli-path"] ["vim" "utility" "vim-wakatime" "setupOpts" "cli_path"])
+    ]
   ];
 }
