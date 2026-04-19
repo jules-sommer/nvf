@@ -104,6 +104,10 @@
 
 - Renamed `languages.ts` to `languages.typescript`.
 
+- Added {option}`vim.languages.go.treesitter.gotmpl.injection` and Renamed
+  `languages.go.treesitter.gotmplPackage` to
+  {option}`vim.languages.go.treesitter.gotmpl.package`
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):
