@@ -702,6 +702,19 @@
       "url": "https://api.github.com/repos/olexsmir/gopher.nvim/tarball/refs/tags/v0.6.1",
       "hash": "sha256-tfagWNHlfCRQ0BMihFCubKgMUpp5QtFl91ja4/Y2/gI="
     },
+    "gradle-nvim": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "oclay1st",
+        "repo": "gradle.nvim"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "dac2cdd20cbc55c588bdcda1b4ee6f9b280d9e79",
+      "url": "https://github.com/oclay1st/gradle.nvim/archive/dac2cdd20cbc55c588bdcda1b4ee6f9b280d9e79.tar.gz",
+      "hash": "sha256-wcUMX9Z1KKkZWs79OnunyGS4yYEeHiiTjtIHUjq1A3k="
+    },
     "gruber-darker": {
       "type": "Git",
       "repository": {

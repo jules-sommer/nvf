@@ -47,6 +47,7 @@ in {
         description = "Java LSP server to use";
       };
     };
+
     extensions = {
       maven-nvim = {
         enable = mkEnableOption "maven integration";
@@ -62,6 +63,23 @@ in {
               - `"mvn"`: to use the maven from the `PATH`.
               - `"./mvnw"`: to use the projects maven.
               - `"$${getExe pkgs.maven}"`: to use maven from a nix package.
+            '';
+          };
+        };
+      };
+      gradle-nvim = {
+        enable = mkEnableOption "gradle integration";
+        setupOpts = mkPluginSetupOption "gradle-nvim" {
+          gadle_executable = mkOption {
+            type = str;
+            default = getExe pkgs.gradle;
+            defaultText = literalExpression "getExe pkgs.gradle";
+            description = ''
+              The gradle executable to use.
+            '';
+            example = ''
+              - `"gradle"`: to use the gradle from the `PATH`.
+              - `"$${getExe pkgs.gradle}"`: to use gradle from a nix package.
             '';
           };
         };
@@ -92,6 +110,19 @@ in {
             package = "maven-nvim";
             setupModule = "maven";
             setupOpts = cfg.extensions.maven-nvim.setupOpts;
+          };
+        }
+      ];
+    })
+
+    (mkIf cfg.extensions.gradle-nvim.enable {
+      vim = mkMerge [
+        {
+          startPlugins = ["nui-nvim" "plenary-nvim"];
+          lazy.plugins.gradle-nvim = {
+            package = "gradle-nvim";
+            setupModule = "gradle";
+            setupOpts = cfg.extensions.gradle-nvim.setupOpts;
           };
         }
       ];
