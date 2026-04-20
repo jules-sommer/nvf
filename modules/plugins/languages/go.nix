@@ -143,7 +143,14 @@ in {
       gomodPackage = mkGrammarOption pkgs "gomod";
       gosumPackage = mkGrammarOption pkgs "gosum";
       goworkPackage = mkGrammarOption pkgs "gowork";
-      gotmplPackage = mkGrammarOption pkgs "gotmpl";
+      gotmpl = {
+        package = mkGrammarOption pkgs "gotmpl";
+        injection = mkOption {
+          type = str;
+          default = "html";
+          description = "Treesitter language to inject in Go templates";
+        };
+      };
     };
 
     lsp = {
@@ -274,7 +281,21 @@ in {
           cfg.treesitter.gomodPackage
           cfg.treesitter.gosumPackage
           cfg.treesitter.goworkPackage
-          cfg.treesitter.gotmplPackage
+          cfg.treesitter.gotmpl.package
+        ];
+        queries = [
+          {
+            type = "injections";
+            filetypes = ["gotmpl"];
+            content = ''
+              ;; extends
+
+              ((text) @injection.content
+                (#set! injection.language "${cfg.treesitter.gotmpl.injection}")
+                (#set! injection.combined)
+              )
+            '';
+          }
         ];
       };
     })
