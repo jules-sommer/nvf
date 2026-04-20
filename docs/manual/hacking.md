@@ -717,7 +717,7 @@ require('lz.n').load({
 })
 ```
 
-[`vim.lazy.plugins` spec]: ./options.html#option-vim-lazy-plugins
+[`vim.lazy.plugins` spec]: ./options.html#option-vim.lazy.plugins
 
 A full list of options can be found in the [`vim.lazy.plugins` spec] on the
 rendered manual.
@@ -750,7 +750,7 @@ keybinding can look like this:
 }
 ```
 
-[module option documentation]: options.html#option-vim-keymaps
+[module option documentation]: options.html#option-vim.keymaps
 
 There are many other settings available in the keymap module. Please refer to
 the [module option documentation] for a full and up-to-date list of them.
