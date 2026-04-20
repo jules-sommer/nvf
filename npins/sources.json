@@ -1063,6 +1063,19 @@
       "url": "https://github.com/OXY2DEV/markview.nvim/archive/1861f959599ae03cfd59f56222a542035b0cd947.tar.gz",
       "hash": "sha256-T6ZVy7o9sSGa2vOolvmL7KO3cXkyEwJ9F4n6BbWdPGk="
     },
+    "maven-nvim": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "oclay1st",
+        "repo": "maven.nvim"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "8d53fe5d5e4b0417c1e923f1c44f769192435411",
+      "url": "https://github.com/oclay1st/maven.nvim/archive/8d53fe5d5e4b0417c1e923f1c44f769192435411.tar.gz",
+      "hash": "sha256-fzen+eJtenvnxRPWXHnnmp+r1g2iaEFOEYUPblViroY="
+    },
     "mellow": {
       "type": "Git",
       "repository": {
