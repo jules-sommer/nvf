@@ -65,14 +65,13 @@ in {
               return term.name
             end
           '';
-          defaultText =
-            literalExpression
-            mkLuaInline ''              '
-                            function(term)
-                              return term.name
-                            end
-                          '''
-            '';
+          defaultText = literalExpression ''
+            mkLuaInline '''
+              function(term)
+                return term.name
+              end
+            '''
+          '';
           description = "Winbar formatter function.";
         };
       };
@@ -93,9 +92,8 @@ in {
         description = ''
           The package that should be used for lazygit.
 
-          Setting this option to `null` will instead attemp to use `lazygit`
+          Setting this option to `null` will instead attempt to use `lazygit`
           from your {env}`PATH`
-
         '';
       };
 
