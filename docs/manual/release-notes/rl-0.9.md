@@ -383,6 +383,12 @@
 
 - Extend `languages.asm` to support more filetypes out of the box.
 
+- Added {option}`vim.languages.java.extensions.maven-nvim.enable` for Maven
+  support;
+
+- Added {option}`vim.languages.java.extensions.gradle-nvim.enable` for Gradle
+  support;
+
 - Didn't Add
   [`syntax-gaslighting`](https://github.com/NotAShelf/syntax-gaslighting.nvim),
   you're crazy.
