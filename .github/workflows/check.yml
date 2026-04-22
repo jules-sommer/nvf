@@ -127,7 +127,6 @@ jobs:
   flake-docs-linkcheck:
     name: "Validate hyperlinks in documentation sources"
     runs-on: ubuntu-latest
-    if: false # disabled until we fix ndg docs
     steps:
       - name: Checkout
         uses: actions/checkout@v6
