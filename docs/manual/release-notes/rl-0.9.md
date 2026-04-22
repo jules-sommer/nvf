@@ -290,6 +290,11 @@
 - Added {option}`vim.lsp.presets.angular-language-server.enable` for Angular
   Template support.
 
+- Added {option}`vim.lsp.presets.vtsls.enable` for Vue TypeScript support.
+
+- Added {option}`vim.lsp.presets.vue-language-server.enable` for Vue Template
+  support.
+
 - Fix `vim.lsp.presets.vala-language-server` to be wrapped correctly with
   `uncrustify`.
 
@@ -355,6 +360,8 @@
 
 - Added [`biomejs`](https://biomejs.dev/) as extra diagnostics provider to
   `languages.ts`.
+
+- Added `languages.vue`.
 
 - Add `languages.fluent` using the official plugin. This only provides
   highlighting.

@@ -45,6 +45,7 @@ in {
     ./scala.nix
     ./sql.nix
     ./svelte.nix
+    ./vue.nix
     ./terraform.nix
     ./toml.nix
     ./typescript.nix

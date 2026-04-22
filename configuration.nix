@@ -104,6 +104,7 @@ isMaximal: {
       qml.enable = false;
       jinja.enable = false;
       svelte.enable = false;
+      vue.enable = false;
       liquid.enable = false;
       tera.enable = false;
       twig.enable = false;
