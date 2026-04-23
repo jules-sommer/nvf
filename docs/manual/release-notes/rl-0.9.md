@@ -277,8 +277,9 @@
 
 - Added {option}`vim.treesitter.queries` to support adding custom queries.
 
-- Added injections for `vim.treesitter.queries.*.content` as `query` and
-  `mkLualine`, `entryAnywhere`, `entryBefore`, `entryAfter` as `lua` in nix.
+- Added injections for `query = '' ... ''` as `query` and `mkLualine '' ... ''`,
+  `entryAnywhere '' ... ''`, `entryBefore [] '' ... ''`,
+  `entryAfter [] '' ... ''` as `lua` in nix.
 
 - Added {option}`vim.languages.tera.treesitter.injection` to configure, what
   language the content is.
