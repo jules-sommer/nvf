@@ -158,8 +158,6 @@ in {
   };
 
   config = mkIf cfg.enable (mkMerge [
-    {vim.globals.markdown_fenced_languages = ["ts=typescript"];}
-
     (mkIf cfg.treesitter.enable {
       vim.treesitter.enable = true;
       vim.treesitter.grammars = [
