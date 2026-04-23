@@ -287,7 +287,7 @@ in {
           {
             type = "injections";
             filetypes = ["gotmpl"];
-            content = ''
+            query = ''
               ;; extends
 
               ((text) @injection.content

@@ -73,29 +73,29 @@ in {
           grouped =
             foldl'
             (
-              acc: query:
+              acc: entry:
                 foldl'
                 (
                   inner: filetype: let
-                    path = "queries/${filetype}/${query.type}.scm";
+                    path = "queries/${filetype}/${entry.type}.scm";
                     prev = inner.${path} or "";
                   in
                     inner
                     // {
-                      ${path} = prev + query.content;
+                      ${path} = prev + entry.query;
                     }
                 )
                 acc
-                query.filetypes
+                entry.filetypes
             )
             {}
             cfg.queries;
 
           files =
             mapAttrsToList
-            (path: content: {
+            (path: query: {
               name = path;
-              path = pkgs.writeText path content;
+              path = pkgs.writeText path query;
             })
             grouped;
         in

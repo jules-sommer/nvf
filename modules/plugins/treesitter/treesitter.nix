@@ -17,7 +17,7 @@
         default = [];
         description = "The filetypes for which the query should be registered.";
       };
-      content = mkOption {
+      query = mkOption {
         type = lines;
         description = "The queries scm script.";
       };
