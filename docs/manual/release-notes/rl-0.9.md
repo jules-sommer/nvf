@@ -283,6 +283,10 @@
 - Added {option}`vim.languages.tera.treesitter.injection` to configure, what
   language the content is.
 
+- Added {option}`vim.treesitter.filetypeMappings` to support mappings similar to
+  <https://github.com/nvim-treesitter/nvim-treesitter/blob/main/plugin/filetypes.lua>.
+  This is mostly use full for Markdown code block injections.
+
 - Added `vim.lsp.presets.<name>` to contain LSP configurations. This allows for
   more flexibility in nvf and reuse of LSPs across languages. Dropped
   `deprecatedSingleOrListOf` in favor of `listOf` for the affected LSP options.

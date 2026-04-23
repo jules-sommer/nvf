@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (lib.options) mkOption mkEnableOption literalExpression;
-  inherit (lib.types) listOf nullOr package bool str lines enum submodule oneOf;
+  inherit (lib.types) listOf nullOr package bool str lines enum submodule oneOf attrsOf;
 
   queriesType = submodule {
     options = {
@@ -110,6 +110,19 @@ in {
       type = listOf queriesType;
       default = [];
       description = "A list of Neovim treesitter queries to be registered.";
+    };
+
+    filetypeMappings = mkOption {
+      type = attrsOf (listOf str);
+      default = {};
+      example = {
+        "sh" = ["ash" "dash"];
+      };
+      description = ''
+        Register alternative parser names for a filetype.
+        For more information see `:h vim.treesitter.language.register()`.
+        See treesitter builtin mappings here: <https://github.com/nvim-treesitter/nvim-treesitter/blob/main/plugin/filetypes.lua>
+      '';
     };
   };
 }
