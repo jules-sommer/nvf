@@ -287,7 +287,9 @@
   <https://github.com/nvim-treesitter/nvim-treesitter/blob/main/plugin/filetypes.lua>.
   This is mostly use full for Markdown code block injections.
 
-- Added some Tree-sitter filetype mappings for `ash`, `dash` and `zsh`.
+- Added some Tree-sitter filetype mappings for:
+  - `bash` = `ash`, `dash`, `zsh`
+  - `yaml` = `yaml`
 
 - Added `vim.lsp.presets.<name>` to contain LSP configurations. This allows for
   more flexibility in nvf and reuse of LSPs across languages. Dropped
