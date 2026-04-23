@@ -283,6 +283,9 @@
 - Added {option}`vim.languages.tera.treesitter.injection` to configure, what
   language the content is.
 
+- Added {option}`vim.languages.jinja.treesitter.injection` to configure, what
+  language the content is.
+
 - Added {option}`vim.treesitter.filetypeMappings` to support mappings similar to
   <https://github.com/nvim-treesitter/nvim-treesitter/blob/main/plugin/filetypes.lua>.
   This is mostly use full for Markdown code block injections.
