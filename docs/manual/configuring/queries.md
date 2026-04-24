@@ -22,7 +22,7 @@ foo = mkLuaInline ''
   vim.treesitter.queries = [{
     type = "injections";
     filetypes = ["nix"];
-    content = ''
+    query = ''
       ;; extends
 
       ((apply_expression

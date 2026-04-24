@@ -57,7 +57,7 @@ in {
           {
             type = "injections";
             filetypes = ["tera"];
-            content = ''
+            query = ''
               ;; extends
 
               ((content) @injection.content
