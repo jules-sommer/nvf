@@ -108,6 +108,12 @@
   `languages.go.treesitter.gotmplPackage` to
   {option}`vim.languages.go.treesitter.gotmpl.package`
 
+[CaueAnjos](https://github.com/caueanjos)
+
+- Renamed `roslyn_ls` to `roslyn-ls`
+- Turned `omnisharp-extended-lsp-nvim` into an extension disabled by default
+- Turned `csharpls-extended-lsp-nvim` into an extension disabled by default
+
 ## Changelog {#sec-release-0-9-changelog}
 
 [SecBear](https://github.com/SecBear):
@@ -487,7 +493,8 @@ https://github.com/gorbit99/codewindow.nvim
 
 [CaueAnjos](https://github.com/caueanjos)
 
-- Add razor support for `roslyn_ls` and `csharp_ls`
+- Added razor support for `roslyn_ls` and `csharp_ls`
+- Added `csharpier` formatter to csharp language
 
 [mputz86](https://github.com/mputz86)
 
