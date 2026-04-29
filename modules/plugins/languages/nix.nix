@@ -132,53 +132,41 @@ in {
         enable = true;
         grammars = [cfg.treesitter.package];
         queries = [
-          # vim.treesitter.queries.*.content
+          # query = ''; -> query
           {
             type = "injections";
             filetypes = ["nix"];
-            content = ''
+            query = ''
               ;; extends
 
               ((binding
                 attrpath: (attrpath
-                  (identifier) @_a
-                  (identifier) @_b
-                  (identifier)? @_c)
-                (#eq? @_a "vim")
-                (#any-of? @_b "treesitter")
-                (#any-of? @_c "queries")
-
-                expression: (attrset_expression
-                  (binding_set
-                    (binding
-                      attrpath: (attrpath
-                        (identifier) @_queries)
-                      (#eq? @_queries "queries")
-
-                      expression: (list_expression
-                        (attrset_expression
-                          (binding_set
-                            (binding
-                              attrpath: (attrpath
-                                (identifier) @_field)
-                              (#eq? @_field "content")
-
-                              expression: [
-                                (string_expression
-                                  (string_fragment) @injection.content)
-                                (indented_string_expression
-                                  (string_fragment) @injection.content)
-                              ]
-
-                              (#set! injection.language "query")
-                              (#set! injection.combined))))))))))
+                  (identifier) @_path)
+                  (#eq? @_path "query")
+                expression: [
+                  (string_expression
+                    ((string_fragment) @injection.content
+                    (#set! injection.language "query")))
+                  (indented_string_expression
+                    ((string_fragment) @injection.content
+                    (#set! injection.language "query")))
+                  (apply_expression
+                    argument: [
+                      (string_expression
+                        ((string_fragment) @injection.content
+                        (#set! injection.language "query")))
+                      (indented_string_expression
+                        ((string_fragment) @injection.content
+                        (#set! injection.language "query")))
+                    ])
+                ]))
             '';
           }
-          # mkLuaInline, entryAnywhere, entryBefore, entryAfter = lua
+          # mkLuaInline, entryAnywhere, entryBefore, entryAfter -> lua
           {
             type = "injections";
             filetypes = ["nix"];
-            content = ''
+            query = ''
               ;; extends
 
               ((apply_expression
@@ -187,8 +175,8 @@ in {
                   (#any-of? @_func "mkLuaInline" "entryAnywhere"))
                 argument: (indented_string_expression
                   (string_fragment) @injection.content))
-               (#set! injection.language "lua")
-               (#set! injection.combined))
+              (#set! injection.language "lua")
+              (#set! injection.combined))
 
               ((apply_expression
                 function: (apply_expression
@@ -198,8 +186,8 @@ in {
                   argument: (_))
                 argument: (indented_string_expression
                   (string_fragment) @injection.content))
-               (#set! injection.language "lua")
-               (#set! injection.combined))
+              (#set! injection.language "lua")
+              (#set! injection.combined))
             '';
           }
         ];

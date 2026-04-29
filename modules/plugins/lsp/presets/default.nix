@@ -9,6 +9,7 @@
     ./ccls.nix
     ./clangd.nix
     ./clojure-lsp.nix
+    ./csharp_ls.nix
     ./cue.nix
     ./dart.nix
     ./deno.nix
@@ -39,6 +40,7 @@
     ./nushell.nix
     ./ocaml-lsp.nix
     ./ols.nix
+    ./omnisharp.nix
     ./openscad-lsp.nix
     ./phan.nix
     ./phpactor.nix
@@ -47,6 +49,7 @@
     ./python-lsp-server.nix
     ./qmlls.nix
     ./r-languageserver.nix
+    ./roslyn-ls.nix
     ./ruby-lsp.nix
     ./ruff.nix
     ./rumdl.nix

@@ -95,15 +95,19 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     (mkIf cfg.treesitter.enable {
-      vim.treesitter.enable = true;
-      vim.treesitter.grammars = [cfg.treesitter.package];
+      vim.treesitter = {
+        enable = true;
+        grammars = [cfg.treesitter.package];
+        # not perfect mappings, but better than none
+        filetypeMappings.bash = ["ash" "dash" "zsh"];
+      };
     })
 
     (mkIf cfg.lsp.enable {
       vim.lsp = {
         presets = genAttrs cfg.lsp.servers (_: {enable = true;});
         servers = genAttrs cfg.lsp.servers (_: {
-          filetypes = ["bash" "sh" "zsh"];
+          filetypes = ["bash" "sh" "ash" "dash" "zsh"];
         });
       };
     })

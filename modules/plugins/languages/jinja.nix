@@ -7,7 +7,7 @@
   inherit (lib) genAttrs;
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.options) literalExpression mkEnableOption mkOption;
-  inherit (lib.types) enum listOf;
+  inherit (lib.types) enum listOf str;
   inherit (lib.nvim.types) mkGrammarOption;
 
   cfg = config.vim.languages.jinja;
@@ -27,6 +27,11 @@ in {
         };
       package = mkGrammarOption pkgs "jinja";
       inlinePackage = mkGrammarOption pkgs "jinja_inline";
+      injection = mkOption {
+        type = str;
+        default = "html";
+        description = "Treesitter language to inject in Jinja templates";
+      };
     };
 
     lsp = {
@@ -46,11 +51,27 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     (mkIf cfg.treesitter.enable {
-      vim.treesitter.enable = true;
-      vim.treesitter.grammars = [
-        cfg.treesitter.package
-        cfg.treesitter.inlinePackage
-      ];
+      vim.treesitter = {
+        enable = true;
+        grammars = [
+          cfg.treesitter.package
+          cfg.treesitter.inlinePackage
+        ];
+        queries = [
+          {
+            type = "injections";
+            filetypes = ["jinja"];
+            query = ''
+              ;; extends
+
+              ((content) @injection.content
+                (#set! injection.language "${cfg.treesitter.injection}")
+                (#set! injection.combined)
+              )
+            '';
+          }
+        ];
+      };
     })
 
     (mkIf cfg.lsp.enable {
